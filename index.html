@@ -4,8 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts App</title>
+    <link rel="stylesheet" href="./css/fontawesome_all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="search_bar">
+            <span class='sbbtns'>
+                <i class="fas fa-trash" id="delete_btn"></i>
+                <i class="fas fa-ellipsis-v" id="options_btn"></i>
+            </span>
+            <input type="text" placeholder="Search Contacts">
+        </div>
+        <div class="contacts_div">
+            <div class="contact_class" id="class_A">
+                <span class="alpha_label" id="alpha_label_A">A</span>
+                <div class="contacts" id="contacts_A">
+                    <div class="contact_div" id="contact_div_A_1">
+                        <div class="check_box_div">
+                            <div class='check_box' id="check_box_A_1"></div>
+                        </div>
+                        <div class="contact" id='contact_A_1'>
+                            <div class="fake_img" id="fake_img_A_1">A</div>
+                            <div class="name" id="name_A_1">Adeola Adebayo</div>
+                        </div>
+                    </div>
+                    <div class="contact_div" id="contact_div_A_2">
+                        <div class="check_box_div">
+                            <div class='check_box' id="check_box_A_2"></div>
+                        </div>
+                        <div class="contact" id='contact_A_2'>
+                            <div class="fake_img" id="fake_img_A_2">A</div>
+                            <div class="name" id="name_A_2">Adeola Modupe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact_class" id="class_B">
+                <span class="alpha_label" id="alpha_label_B">B</span>
+                <div class="contacts" id="contacts_B">
+                    <div class="contact_div" id="contact_div_B_1">
+                        <div class="check_box_div">
+                            <div class='check_box' id="check_box_B_1"></div>
+                        </div>
+                        <div class="contact" id='contact_B_1'>
+                            <div class="fake_img" id="fake_img_B_1">B</div>
+                            <div class="name" id="name_A_1">Babayaro Sepeteri</div>
+                        </div>
+                    </div>
+                    <div class="contact_div" id="contact_div_B_2">
+                        <div class="check_box_div">
+                            <div class='check_box' id="check_box_B_2"></div>
+                        </div>
+                        <div class="contact" id='contact_B_2'>
+                            <div class="fake_img" id="fake_img_B_2">B</div>
+                            <div class="name" id="name_B_2">Brendan Bright</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class='add_new_contact'>+</span>
+        </div>
+    </div>
 </body>
 </html>

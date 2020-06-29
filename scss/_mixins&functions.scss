@@ -1,0 +1,19 @@
+@mixin flex($jc:null,$ai:null,$dir:null) {
+    display: flex;
+    align-items: $ai;
+    justify-content: $jc;
+    flex-direction: $dir;
+}
+
+@mixin shadow($type) {
+    @if $type == 'search_bar' {
+        box-shadow: 0 0 6px rgba($blackText, $alpha: (10 / 100));
+    } @else if $type == 'contact_bar' {
+        box-shadow: 0 0 5px rgba($blackText, $alpha: (6 / 100));
+    }
+}
+
+@function weight($val) {
+    @return map-get($fontWeights, $val);
+}
+
