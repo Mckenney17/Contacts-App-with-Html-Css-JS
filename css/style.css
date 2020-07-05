@@ -25,7 +25,7 @@ html, body {
   cursor: pointer;
 }
 
-.check_box, .add_new_contact_btn, .save_btn, .select {
+.check_box, .add_new_contact_btn, .save_btn, .select, .back_button, .edit_button {
   cursor: pointer;
 }
 
@@ -338,6 +338,139 @@ html, body {
   bottom: 23% !important;
 }
 
+.contact_profile {
+  width: 100%;
+  display: none;
+}
+
+.contact_profile .top_section {
+  height: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.1))), #07E7F8;
+  background: linear-gradient(360deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), #07E7F8;
+}
+
+.contact_profile .top_section .initial {
+  font-weight: 200;
+  font-size: 200px;
+  text-align: center;
+}
+
+.contact_profile .top_section .back_button, .contact_profile .top_section .edit_button {
+  position: absolute;
+  -webkit-transition: color .2s ease;
+  transition: color .2s ease;
+}
+
+.contact_profile .top_section .back_button:hover, .contact_profile .top_section .edit_button:hover {
+  color: #fff;
+}
+
+.contact_profile .top_section .back_button {
+  top: 5%;
+  left: 3%;
+  color: #000;
+}
+
+.contact_profile .top_section .edit_button {
+  top: 5%;
+  right: 3%;
+  color: #000;
+}
+
+.contact_profile .top_section .name {
+  position: absolute;
+  bottom: 5%;
+  left: 3%;
+  font-weight: 300;
+  font-size: 25px;
+}
+
+.contact_profile .bottom_section {
+  height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.contact_profile .bottom_section .phone, .contact_profile .bottom_section .mail {
+  width: 300px;
+  height: 50px;
+  background: #07E7F8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+.contact_profile .bottom_section .phone i, .contact_profile .bottom_section .mail i {
+  font-size: 25px;
+  margin-left: 7px;
+  margin-right: 5px;
+}
+
+.contact_profile .bottom_section .phone .info, .contact_profile .bottom_section .mail .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.contact_profile .bottom_section .phone .info .info_h, .contact_profile .bottom_section .mail .info .info_h {
+  font-size: 25px;
+}
+
+.contact_profile .bottom_section .phone .info .label, .contact_profile .bottom_section .mail .info .label {
+  font-size: 10px;
+}
+
+.contact_profile .bottom_section .phone::after, .contact_profile .bottom_section .mail::after {
+  position: absolute;
+  content: '';
+  top: -4px;
+  left: -4px;
+  bottom: -4px;
+  right: -4px;
+  border: 1px solid #07E7F8;
+  border-radius: 5px;
+}
+
+.contact_profile .bottom_section .mail {
+  margin-top: 15px;
+}
+
 .container {
   width: 600px;
   height: 90%;
@@ -360,6 +493,7 @@ html, body {
   font-size: 20px;
   font-weight: 400;
   padding-left: 30px;
+  padding-right: 100px;
 }
 
 .search_bar input::-webkit-input-placeholder {
