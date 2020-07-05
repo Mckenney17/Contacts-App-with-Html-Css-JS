@@ -2,10 +2,12 @@
 @import 'mixins&functions';
 @import 'defaults';
 @import 'contacts';
+@import 'newContactModal';
 
 .container {
     width: 600px;
     height: 90%;
+    padding: 0 15px;
 }
 
 .search_bar {
@@ -21,17 +23,22 @@
         font: {
             size: 20px;
             weight: weight(normal);
-            color: $searchPlaceholder;
         }
         padding-left: 30px;
+        &::-webkit-input-placeholder {
+            color: $searchPlaceholder;
+        }
+
     }
     .sbbtns {
         position: absolute;
         font-size: larger;
+        border-radius: 12px;
         width: 100px;
         height: 100%;
+        background: #fff;
         @include flex(center, center);
-        transition: background .2s linear;
+        transition: background .2s ease;
         left: 100%;
         top: 50%;
         transform: translate(-100%, -50%);
@@ -43,7 +50,7 @@
             height: 35px;
             cursor: pointer;
             margin: 0 2px;
-            transition: all .2s linear;
+            transition: all .2s ease;
             &:hover {
                 background: $hoverbgoptions;
             }
@@ -55,9 +62,44 @@
             font-size: 0;
         }
     }
+
+    .options_cont {
+        position: absolute;
+        z-index: 5;
+        width: 100px;
+        height: 70px;
+        background: #fff;
+        box-shadow: 0 0 20px rgba(#000, 0.1);
+        border-radius: 5px;
+        top: 65%;
+        opacity: 0;
+        display: none;
+        left: 72%;
+        transition: top .5s ease,
+                    opacity .5s ease;
+        
+        .select {
+            @include flex(null, center);
+            padding-left: 10px;
+            width: 100%;
+            height: 50%;
+            transition: background .2s ease;
+
+            &:hover {
+                background: $hoverbgcontact;
+            }
+        }
+
+        #select_pick {
+            border-bottom: 1px solid $hoverbgcontact;
+        }
+        #select_all {
+            border-top: 1px solid $hoverbgcontact;
+        }
+    }
 }
 
-.anim_opt_click {
+.anim_sel_click {
     #delete_btn {
         display: flex !important;
     }
@@ -65,19 +107,17 @@
     #options_btn {
         transform: translateX(20px);
     }
+}
 
-    .contact {
-        transform: translateX(35px);
-    }
+.anim_opt_click {
+    display: initial !important;
+}
+
+.animate_opt_cont_modal {
+    top: 45% !important;
+    opacity: 1 !important;
 }
 
 .grow_font {
     font-size: 19.2px !important;
-}
-
-.grow_box {
-    display: flex !important;
-    opacity: 1 !important;
-    width: 100% !important;
-    height: 100% !important;
 }

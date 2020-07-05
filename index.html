@@ -14,6 +14,10 @@
                 <i class="fas fa-trash" id="delete_btn"></i>
                 <i class="fas fa-ellipsis-v" id="options_btn"></i>
             </span>
+            <div class="options_cont">
+                <div class="select" id="select_pick">Select</div>
+                <div class="select" id="select_all">Select All</div>
+            </div>
             <input type="text" placeholder="Search Contacts">
         </div>
         <div class="contacts_div">
@@ -63,8 +67,35 @@
                     </div>
                 </div>
             </div>
-            <span class='add_new_contact'>+</span>
+            <span class='add_new_contact_btn'>+</span>
+            <!-- This will be generated at runtime -->
+            <div class="add_new_contact_modal">
+                <button class="save_btn">Save</button>
+                <div class="upload_img">
+                    <div class="box_inner">
+                        <div class="circle_inner"></div>
+                        <div class="plus_sign">+</div>
+                    </div>
+                </div>
+                <div class="inp_cont" id='fn_cont'>
+                    <input type="text" id="fn_input" class='input'>
+                    <span class='fake_placeholder' id='fake_placeholder_fn'>Firstname</span>
+                </div>
+                <div class="inp_cont" id='ln_cont'>
+                    <input type="text" id="ln_input" class='input'>
+                    <span class='fake_placeholder' id='fake_placeholder_ln'>LastName</span>
+                </div>
+                <div class="inp_cont" id='pn_cont'>
+                    <input type="text" id="pn_input" class='input'>
+                    <span class='fake_placeholder' id='fake_placeholder_pn'>Phone Number</span>
+                </div>
+                <div class="inp_cont" id='em_cont'>
+                    <input type="text" id="em_input" class='input'>
+                    <span class='fake_placeholder' id='fake_placeholder_em'>E-mail</span>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="./js/index.js"></script>
 </body>
 </html>
