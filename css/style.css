@@ -25,7 +25,7 @@ html, body {
   cursor: pointer;
 }
 
-.check_box, .add_new_contact_btn, .save_btn, .select, .back_button, .edit_button {
+.check_box, .add_new_contact_btn, .save_btn, .select, .back_button, .edit_button, #profilePic {
   cursor: pointer;
 }
 
@@ -166,22 +166,6 @@ html, body {
   font-weight: 200;
 }
 
-.animate_add_btn {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.anim_sel_click .contact {
-  -webkit-transform: translateX(35px);
-          transform: translateX(35px);
-}
-
-.grow_box {
-  opacity: 1 !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
 .add_new_contact_modal {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -233,9 +217,23 @@ html, body {
       align-self: center;
   width: 100px;
   height: 100px;
+  border: 1px solid #1a73e8;
   border-radius: 50%;
+  position: relative;
   margin: 20px 0;
   background: #1a73e8;
+}
+
+.add_new_contact_modal .upload_img #profilePic {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 20;
+  opacity: 0;
+  border-radius: 50%;
 }
 
 .add_new_contact_modal .upload_img .box_inner {
@@ -248,7 +246,7 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: relative;
+  position: absolute;
   width: 55px;
   height: 55px;
   border: 5px solid #fff;
@@ -311,95 +309,6 @@ html, body {
           transform: translateY(-50%);
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
-}
-
-.animate_input .input {
-  border: 2px solid #1a73e8 !important;
-}
-
-.animate_input .fake_placeholder {
-  top: -2% !important;
-  left: 3% !important;
-  background: #fff !important;
-  padding: 0 5px !important;
-  color: #1a73e8 !important;
-  font-weight: 500;
-  font-size: 13px !important;
-}
-
-.input_filled .input {
-  border: 2px solid #e6e6e6 !important;
-}
-
-.input_filled .fake_placeholder {
-  color: #e6e6e6 !important;
-}
-
-.input_focused .input {
-  border: 2px solid #1a73e8 !important;
-}
-
-.input_focused .fake_placeholder {
-  color: #1a73e8 !important;
-}
-
-.modal_disp {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-}
-
-.animate_modal {
-  opacity: 1 !important;
-  bottom: 23% !important;
-}
-
-.error_alert .input {
-  border: 2px solid red !important;
-  -webkit-animation: eli 1s linear infinite !important;
-          animation: eli 1s linear infinite !important;
-}
-
-.error_alert .fake_placeholder {
-  color: red !important;
-  -webkit-animation: elf 1s linear infinite !important;
-          animation: elf 1s linear infinite !important;
-}
-
-@-webkit-keyframes elf {
-  from {
-    color: #e6e6e6 !important;
-  }
-  to {
-    color: red !important;
-  }
-}
-
-@keyframes elf {
-  from {
-    color: #e6e6e6 !important;
-  }
-  to {
-    color: red !important;
-  }
-}
-
-@-webkit-keyframes eli {
-  from {
-    border: 2px solid #e6e6e6 !important;
-  }
-  to {
-    border: 2px solid red !important;
-  }
-}
-
-@keyframes eli {
-  from {
-    border: 2px solid #e6e6e6 !important;
-  }
-  to {
-    border: 2px solid red !important;
-  }
 }
 
 .contact_profile {
@@ -533,6 +442,117 @@ html, body {
 
 .contact_profile .bottom_section .mail {
   margin-top: 15px;
+}
+
+.animate_input .input {
+  border: 2px solid #1a73e8 !important;
+}
+
+.animate_input .fake_placeholder {
+  top: -2% !important;
+  left: 3% !important;
+  background: #fff !important;
+  padding: 0 5px !important;
+  color: #1a73e8 !important;
+  font-weight: 500;
+  font-size: 13px !important;
+}
+
+.input_filled .input {
+  border: 2px solid #e6e6e6 !important;
+}
+
+.input_filled .fake_placeholder {
+  color: #e6e6e6 !important;
+}
+
+.input_focused .input {
+  border: 2px solid #1a73e8 !important;
+}
+
+.input_focused .fake_placeholder {
+  color: #1a73e8 !important;
+}
+
+.modal_disp {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.animate_modal {
+  opacity: 1 !important;
+  bottom: 23% !important;
+}
+
+.error_alert .input {
+  border: 2px solid red !important;
+  -webkit-animation: eli 1s linear infinite !important;
+          animation: eli 1s linear infinite !important;
+}
+
+.error_alert .fake_placeholder {
+  color: red !important;
+  -webkit-animation: elf 1s linear infinite !important;
+          animation: elf 1s linear infinite !important;
+}
+
+@-webkit-keyframes elf {
+  from {
+    color: #e6e6e6 !important;
+  }
+  to {
+    color: red !important;
+  }
+}
+
+@keyframes elf {
+  from {
+    color: #e6e6e6 !important;
+  }
+  to {
+    color: red !important;
+  }
+}
+
+@-webkit-keyframes eli {
+  from {
+    border: 2px solid #e6e6e6 !important;
+  }
+  to {
+    border: 2px solid red !important;
+  }
+}
+
+@keyframes eli {
+  from {
+    border: 2px solid #e6e6e6 !important;
+  }
+  to {
+    border: 2px solid red !important;
+  }
+}
+
+.animate_add_btn {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.anim_sel_click .contact {
+  -webkit-transform: translateX(35px);
+          transform: translateX(35px);
+}
+
+.grow_box {
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.makePicBg {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: 50% 0 !important;
 }
 
 .container {

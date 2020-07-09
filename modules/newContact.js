@@ -1,10 +1,11 @@
 // Get input values and check for errors
 import DOMStrings from './DOMStrings.js';
 import { classAction, event, resetModal } from './functionsUI.js';
+import Addpic from './proflePicUpload.js';
 const {
     emailInput, phoneInput, firstNameInput,
     lastNameInput, input, newContactModal,
-    addNewBtn,
+    addNewBtn, profilePic,
 } = DOMStrings;
 
 
@@ -51,6 +52,13 @@ const liveValidation = (ev) => {
     }
 };
 
+let picUrl = null;
+event(profilePic, 'change', () => {
+    Addpic().then((url) => {
+        picUrl = url;
+    });
+});
+
 const fetchVals = () => {
     if (checkEmpty(firstNameInput)
     && checkEmpty(phoneInput)
@@ -62,11 +70,13 @@ const fetchVals = () => {
             LastName: lastNameInput.value,
             PhoneNumber: phoneInput.value,
             'E-mail': emailInput.value,
+            picUrl,
         };
         resetModal();
         classAction(newContactModal, 'toggle', 'modal_disp');
         classAction(newContactModal, 'toggle', 'animate_modal');
         classAction(addNewBtn, 'toggle', 'animate_add_btn');
+        picUrl = null;
         return res;
     }
 
@@ -83,5 +93,6 @@ const fetchVals = () => {
 };
 
 [...input].map((el) => event(el, 'input', liveValidation));
+
 
 export default fetchVals;

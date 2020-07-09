@@ -16,6 +16,9 @@ const DOMStrings = {
     phoneInput: selector('#pn_input'),
     firstNameInput: selector('#fn_input'),
     lastNameInput: selector('#ln_input'),
+    fakeProfilePic: selector('.box_inner'),
+    profilePicCont: selector('.upload_img'),
+    profilePic: selector('#profilePic'),
 };
 
 export default DOMStrings;

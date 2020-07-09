@@ -10,7 +10,7 @@ const geneRatedProfileFromData = () => {
     const contactDataByUser = fetchVals();
     if (!contactDataByUser) return;
     const {
- FirstName, LastName, PhoneNumber, 'E-mail': email,
+ FirstName, LastName, PhoneNumber, 'E-mail': email, picUrl,
 } = contactDataByUser;
 
     const contactDataforApp = {
@@ -18,9 +18,10 @@ const geneRatedProfileFromData = () => {
         LastName,
         PhoneNumber,
         email,
+        picUrl,
         color: randCol(),
     };
-    return contactDataforApp;
+    console.log(contactDataforApp);
 };
 
 event(saveBtn, 'click', geneRatedProfileFromData);

@@ -1,0 +1,90 @@
+.animate_input {
+    .input {
+        border: 2px solid $primCol !important;
+    }
+    .fake_placeholder {
+        top: -2% !important;
+        left: 3% !important;
+        background: #fff !important;
+        padding: 0 5px !important;
+        color: $primCol !important;
+        font-weight: 500;
+        font-size: 13px !important;
+    }
+}
+
+.input_filled {
+    .input {
+        border: 2px solid $inputBorder !important;
+    }
+    .fake_placeholder {
+        color: $inputBorder !important;
+    }
+}
+
+.input_focused {
+    .input {
+        border: 2px solid $primCol !important;
+    }
+    .fake_placeholder {
+        color: $primCol !important;
+    }
+}
+
+.modal_disp {
+    display: flex !important;
+}
+
+.animate_modal {
+    opacity: 1 !important;
+    bottom: 23% !important;
+}
+
+.error_alert {
+    .input {
+        border: 2px solid red !important;
+        animation: eli 1s linear infinite !important;
+    }
+    .fake_placeholder {
+        color: red !important;
+        animation: elf 1s linear infinite !important;
+    }
+}
+
+@keyframes elf {
+    from {
+        color: $inputBorder !important;
+    } to {
+        color: red !important;
+    }
+}
+
+@keyframes eli {
+    from {
+        border: 2px solid $inputBorder !important;
+    } to {
+        border: 2px solid red !important;
+    }
+}
+
+.animate_add_btn {
+    transform: rotate(45deg);
+}
+
+.anim_sel_click {
+    .contact {
+        transform: translateX(35px);
+    }
+}
+
+.grow_box {
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.makePicBg {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: 50% 0 !important;
+}
