@@ -26,7 +26,7 @@ const inputPlaceholderAnim = (ev) => {
     [...inputCont].map((el) => {
         if (el.children[0].value !== '') {
             classAction(el, 'add', 'input_filled');
-            if(ev.type === 'focus' && ev.target.id === el.children[0].id) {
+            if (ev.type === 'focus' && ev.target.id === el.children[0].id) {
                 classAction(el, 'remove', 'input_filled');
                 classAction(el, 'add', 'input_focused');
             } else {
@@ -40,8 +40,10 @@ const inputPlaceholderAnim = (ev) => {
             classAction(el, 'remove', 'error_alert');
         }
     });
-    classAction(document.getElementById(ev.target.id).parentNode, 'add', 'animate_input');
-    document.getElementById(ev.target.id).previousElementSibling?.focus();
+    classAction(ev.target.parentNode, 'add', 'animate_input');
+    if (ev.target.classList.contains('fake_placeholder')) {
+        ev.target.previousElementSibling.focus();
+    }
 };
 
 const toggleSelectionModal = () => {
@@ -51,4 +53,6 @@ const toggleSelectionModal = () => {
     }, 0);
 };
 
-export { toggleNewContactModal, toggleSelectionModal, addNewBtn, optionsBtn, event };
+export {
+ toggleNewContactModal, toggleSelectionModal, addNewBtn, optionsBtn, event,
+};
