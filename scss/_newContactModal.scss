@@ -6,7 +6,8 @@
     background: #fff;
     bottom: 20%;
     opacity: 0;
-    height: 432px;
+    display: none;
+    height: 450px;
     border-radius: 10px;
     box-shadow: 0 0 50px rgba(#000, 0.1);
     transition: bottom .5s ease,
@@ -109,6 +110,24 @@
     }
 }
 
+.input_filled {
+    .input {
+        border: 2px solid $inputBorder !important;
+    }
+    .fake_placeholder {
+        color: $inputBorder !important;
+    }
+}
+
+.input_focused {
+    .input {
+        border: 2px solid $primCol !important;
+    }
+    .fake_placeholder {
+        color: $primCol !important;
+    }
+}
+
 .modal_disp {
     display: flex !important;
 }
@@ -116,4 +135,31 @@
 .animate_modal {
     opacity: 1 !important;
     bottom: 23% !important;
+}
+
+.error_alert {
+    .input {
+        border: 2px solid red !important;
+        animation: eli 1s linear infinite !important;
+    }
+    .fake_placeholder {
+        color: red !important;
+        animation: elf 1s linear infinite !important;
+    }
+}
+
+@keyframes elf {
+    from {
+        color: $inputBorder !important;
+    } to {
+        color: red !important;
+    }
+}
+
+@keyframes eli {
+    from {
+        border: 2px solid $inputBorder !important;
+    } to {
+        border: 2px solid red !important;
+    }
 }

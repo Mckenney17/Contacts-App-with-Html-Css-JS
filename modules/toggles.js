@@ -1,30 +1,55 @@
-/* eslint-disable import/named */
 /* eslint-disable no-unused-expressions */
 import {
-    setProp, event, classAction, selector,
+    event, classAction, resetModal,
 } from './functionsUI.js';
 import DOMStrings from './DOMStrings.js';
-import { newContactModal } from './dynamicGenCont.js';
+const {
+    contactsDiv, addNewBtn, selectModal,
+    optionsBtn, newContactModal, inputCont,
+    fakePlaceholder, input,
+} = DOMStrings;
 
-const parElem = selector(DOMStrings.get('contactsDiv'));
-const lastElem = parElem.children[parElem.children.length - 1];
-
+// Showing the New Contact adder Modal
 const toggleNewContactModal = () => {
-    selector(DOMStrings.get('newContactModal'))
-    ? setProp(DOMStrings.get('newContactModal'), 'outerHTML', '')
-    : lastElem.insertAdjacentHTML('beforebegin', newContactModal);
+    classAction(newContactModal, 'toggle', 'modal_disp');
     setTimeout(() => {
-        classAction(DOMStrings.get('newContactModal'), 'add', 'animate_modal');
-        classAction(DOMStrings.get('addNewBtn'), 'toggle', 'animate_add_btn');
+        classAction(newContactModal, 'toggle', 'animate_modal');
+        classAction(addNewBtn, 'toggle', 'animate_add_btn');
     }, 0);
+    [...input].map((el) => event(el, 'focus', inputPlaceholderAnim));
+    [...fakePlaceholder].map((el) => event(el, 'click', inputPlaceholderAnim));
+    resetModal();
+};
+
+// Input Placeholder Animation
+const inputPlaceholderAnim = (ev) => {
+    [...inputCont].map((el) => {
+        if (el.children[0].value !== '') {
+            classAction(el, 'add', 'input_filled');
+            if(ev.type === 'focus' && ev.target.id === el.children[0].id) {
+                classAction(el, 'remove', 'input_filled');
+                classAction(el, 'add', 'input_focused');
+            } else {
+                classAction(el, 'add', 'input_filled');
+                classAction(el, 'remove', 'input_focused');
+            }
+        } else {
+            classAction(el, 'remove', 'animate_input');
+            classAction(el, 'remove', 'input_filled');
+            classAction(el, 'remove', 'input_focused');
+            classAction(el, 'remove', 'error_alert');
+        }
+    });
+    classAction(document.getElementById(ev.target.id).parentNode, 'add', 'animate_input');
+    document.getElementById(ev.target.id).previousElementSibling?.focus();
 };
 
 const toggleSelectionModal = () => {
-    classAction(DOMStrings.get('selectModal'), 'toggle', 'anim_opt_click');
+    classAction(selectModal, 'toggle', 'anim_opt_click');
     setTimeout(() => {
-        classAction(DOMStrings.get('selectModal'), 'toggle', 'animate_opt_cont_modal');
+        classAction(selectModal, 'toggle', 'animate_opt_cont_modal');
     }, 0);
 };
 
-event(DOMStrings.get('addNewBtn'), 'click', toggleNewContactModal);
-event(DOMStrings.get('optionsBtn'), 'click', toggleSelectionModal);
+event(addNewBtn, 'click', toggleNewContactModal);
+event(optionsBtn, 'click', toggleSelectionModal);

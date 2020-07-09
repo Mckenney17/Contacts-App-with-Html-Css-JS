@@ -196,7 +196,8 @@ html, body {
   background: #fff;
   bottom: 20%;
   opacity: 0;
-  height: 432px;
+  display: none;
+  height: 450px;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
@@ -326,6 +327,22 @@ html, body {
   font-size: 13px !important;
 }
 
+.input_filled .input {
+  border: 2px solid #e6e6e6 !important;
+}
+
+.input_filled .fake_placeholder {
+  color: #e6e6e6 !important;
+}
+
+.input_focused .input {
+  border: 2px solid #1a73e8 !important;
+}
+
+.input_focused .fake_placeholder {
+  color: #1a73e8 !important;
+}
+
 .modal_disp {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -335,6 +352,54 @@ html, body {
 .animate_modal {
   opacity: 1 !important;
   bottom: 23% !important;
+}
+
+.error_alert .input {
+  border: 2px solid red !important;
+  -webkit-animation: eli 1s linear infinite !important;
+          animation: eli 1s linear infinite !important;
+}
+
+.error_alert .fake_placeholder {
+  color: red !important;
+  -webkit-animation: elf 1s linear infinite !important;
+          animation: elf 1s linear infinite !important;
+}
+
+@-webkit-keyframes elf {
+  from {
+    color: #e6e6e6 !important;
+  }
+  to {
+    color: red !important;
+  }
+}
+
+@keyframes elf {
+  from {
+    color: #e6e6e6 !important;
+  }
+  to {
+    color: red !important;
+  }
+}
+
+@-webkit-keyframes eli {
+  from {
+    border: 2px solid #e6e6e6 !important;
+  }
+  to {
+    border: 2px solid red !important;
+  }
+}
+
+@keyframes eli {
+  from {
+    border: 2px solid #e6e6e6 !important;
+  }
+  to {
+    border: 2px solid red !important;
+  }
 }
 
 .contact_profile {
