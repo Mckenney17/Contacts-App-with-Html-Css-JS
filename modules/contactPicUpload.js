@@ -1,16 +1,16 @@
 import DOMStrings from './DOMStrings.js';
 import { event, setStyle, classAction } from './functionsUI.js';
 
-const { profilePic, profilePicCont, fakeProfilePic } = DOMStrings;
+const { contactPic, contactPicCont, fakeContactPic } = DOMStrings;
 
 const AddPic = () => {
     const fr = new FileReader();
-    fr.readAsDataURL(profilePic.files[0]);
+    fr.readAsDataURL(contactPic.files[0]);
     return new Promise((resolve) => {
         event(fr, 'load', () => {
-            setStyle(fakeProfilePic, 'display', 'none');
-            setStyle(profilePicCont, 'background', `url(${fr.result})`);
-            classAction(profilePicCont, 'add', 'makePicBg');
+            setStyle(fakeContactPic, 'display', 'none');
+            setStyle(contactPicCont, 'background', `url(${fr.result})`);
+            classAction(contactPicCont, 'add', 'makePicBg');
             resolve(fr.result);
         });
     });

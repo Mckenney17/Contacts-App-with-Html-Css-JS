@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 import DOMStrings from './DOMStrings.js';
 const {
- inputCont, fakeProfilePic, profilePic, profilePicCont,
+ inputCont, fakeContactPic, contactPic, contactPicCont,
 } = DOMStrings;
 
 const selector = (elem) => document.querySelector(elem);
@@ -40,10 +40,10 @@ const resetModal = () => {
         classAction(el, 'remove', 'input_focused');
         classAction(el, 'remove', 'error_alert');
     });
-    setStyle(fakeProfilePic, 'display', 'flex');
-    classAction(profilePicCont, 'remove', 'makePicBg');
-    setStyle(profilePicCont, 'background', '#1a73e8');
-    setProp(profilePic, 'value', '');
+    setStyle(fakeContactPic, 'display', 'flex');
+    classAction(contactPicCont, 'remove', 'makePicBg');
+    setStyle(contactPicCont, 'background', '#1a73e8');
+    setProp(contactPic, 'value', '');
 };
 
 export {

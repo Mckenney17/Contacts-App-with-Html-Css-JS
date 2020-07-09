@@ -224,7 +224,7 @@ html, body {
   background: #1a73e8;
 }
 
-.add_new_contact_modal .upload_img #profilePic {
+.add_new_contact_modal .upload_img #contactPic {
   position: absolute;
   width: 100px;
   height: 100px;

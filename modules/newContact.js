@@ -1,11 +1,11 @@
 // Get input values and check for errors
 import DOMStrings from './DOMStrings.js';
 import { classAction, event, resetModal } from './functionsUI.js';
-import Addpic from './proflePicUpload.js';
+import Addpic from './contactPicUpload.js';
 const {
     emailInput, phoneInput, firstNameInput,
     lastNameInput, input, newContactModal,
-    addNewBtn, profilePic,
+    addNewBtn, contactPic,
 } = DOMStrings;
 
 
@@ -53,7 +53,7 @@ const liveValidation = (ev) => {
 };
 
 let picUrl = null;
-event(profilePic, 'change', () => {
+event(contactPic, 'change', () => {
     Addpic().then((url) => {
         picUrl = url;
     });
