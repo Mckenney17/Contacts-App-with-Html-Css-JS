@@ -4,7 +4,7 @@ import {
 } from './functionsUI.js';
 import DOMStrings from './DOMStrings.js';
 const {
-    contactsDiv, addNewBtn, selectModal,
+    addNewBtn, selectModal,
     optionsBtn, newContactModal, inputCont,
     fakePlaceholder, input,
 } = DOMStrings;
@@ -51,5 +51,4 @@ const toggleSelectionModal = () => {
     }, 0);
 };
 
-event(addNewBtn, 'click', toggleNewContactModal);
-event(optionsBtn, 'click', toggleSelectionModal);
+export { toggleNewContactModal, toggleSelectionModal, addNewBtn, optionsBtn, event };

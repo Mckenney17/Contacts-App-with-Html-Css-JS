@@ -21,7 +21,7 @@ const geneRatedProfileFromData = () => {
         picUrl,
         color: randCol(),
     };
-    console.log(contactDataforApp);
+    return contactDataforApp;
 };
 
 event(saveBtn, 'click', geneRatedProfileFromData);
