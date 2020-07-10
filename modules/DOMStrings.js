@@ -19,6 +19,8 @@ const DOMStrings = {
     fakeContactPic: selector('.box_inner'),
     contactPicCont: selector('.upload_img'),
     contactPic: selector('#contactPic'),
+
+    contactClass: selectorAll('.contact_class'),
 };
 
 export default DOMStrings;

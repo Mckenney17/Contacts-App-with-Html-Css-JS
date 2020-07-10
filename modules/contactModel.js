@@ -1,29 +1,23 @@
 /* eslint-disable consistent-return */
-import { event } from './functionsUI.js';
-import DOMStrings from './DOMStrings.js';
 import fetchVals from './newContact.js';
-const { saveBtn } = DOMStrings;
 
-const randCol = () => `rgb(${Math.trunc(Math.random() * 136 + 100)}, ${Math.trunc(Math.random() * 136 + 100)}, ${Math.trunc(Math.random() * 136 + 100)})`;
-
-const geneRatedProfileFromData = () => {
+const manipulatedDataForApp = () => {
     const contactDataByUser = fetchVals();
     if (!contactDataByUser) return;
     const {
- FirstName, LastName, PhoneNumber, 'E-mail': email, picUrl,
+ firstName, lastName, phoneNumber, 'E-mail': email, picUrl,
 } = contactDataByUser;
 
-    const contactDataforApp = {
-        initial: LastName ? LastName[0] : FirstName[0],
-        LastName,
-        PhoneNumber,
+    const contactDataForApp = {
+        initial: lastName ? lastName[0] : firstName[0],
+        firstName,
+        lastName,
+        phoneNumber,
         email,
         picUrl,
-        color: randCol(),
+        color: ['#fa903e', '#5bb974', '#fcc934', '#ee675c', '#4ecde6', '#af5cf7'][Math.trunc(Math.random() * 6)],
     };
-    return contactDataforApp;
+    return contactDataForApp;
 };
 
-event(saveBtn, 'click', geneRatedProfileFromData);
-
-export default geneRatedProfileFromData;
+export default manipulatedDataForApp;

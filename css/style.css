@@ -126,7 +126,6 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: #07E7F8;
   margin: 0 10px;
   font-size: 27px;
   font-weight: 400;
@@ -553,6 +552,10 @@ html, body {
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: 50% 0 !important;
+}
+
+.btn_disabled {
+  opacity: 0.5 !important;
 }
 
 .container {

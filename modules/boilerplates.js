@@ -28,4 +28,25 @@ const contactProfile = ({
 </div>
 `;
 
-export default  contactProfile;
+const contactBoilerPlate = (initial, name, idNum) => `
+<div class="contact_div" id="contact_div_${initial}_${idNum}">
+    <div class="check_box_div">
+        <div class='check_box' id="check_box_${initial}_${idNum}"></div>
+    </div>
+    <div class="contact" id='contact_${initial}_${idNum}'>
+        <div class="fake_img" id="fake_img_${initial}_${idNum}">${initial}</div>
+        <div class="name" id="name_${initial}_${idNum}">${name}</div>
+    </div>
+</div>
+`;
+
+const contactGroupBoilerplate = (initial) => `
+<div class="contact_class" id="class_${initial}">
+    <span class="alpha_label" id="alpha_label_${initial}">${initial}</span>
+    <div class="contacts" id="contacts_${initial}">
+        
+    </div>
+</div>
+`;
+
+export { contactBoilerPlate, contactGroupBoilerplate };

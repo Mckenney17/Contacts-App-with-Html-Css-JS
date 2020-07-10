@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 import DOMStrings from './DOMStrings.js';
 const {
- inputCont, fakeContactPic, contactPic, contactPicCont,
+ inputCont, fakeContactPic, contactPicCont, saveBtn,
 } = DOMStrings;
 
 const selector = (elem) => document.querySelector(elem);
@@ -43,7 +43,8 @@ const resetModal = () => {
     setStyle(fakeContactPic, 'display', 'flex');
     classAction(contactPicCont, 'remove', 'makePicBg');
     setStyle(contactPicCont, 'background', '#1a73e8');
-    setProp(contactPic, 'value', '');
+    saveBtn.setAttribute('disabled', '');
+    classAction(saveBtn, 'add', 'btn_disabled');
 };
 
 export {

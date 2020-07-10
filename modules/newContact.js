@@ -5,7 +5,7 @@ import Addpic from './contactPicUpload.js';
 const {
     emailInput, phoneInput, firstNameInput,
     lastNameInput, input, newContactModal,
-    addNewBtn, contactPic,
+    addNewBtn, contactPic, saveBtn,
 } = DOMStrings;
 
 
@@ -42,13 +42,34 @@ const checkWrongPhoneInput = (param) => {
     return true;
 };
 
-const liveValidation = (ev) => {
-    if (ev.target.id === emailInput.id) {
-        checkWrongMailInput(emailInput);
-    }
+const disable = (btn) => {
+    btn.setAttribute('disabled', '');
+    classAction(btn, 'add', 'btn_disabled');
+};
 
-    if (ev.target.id === phoneInput.id) {
-        checkWrongPhoneInput(phoneInput);
+const enable = (btn) => {
+    btn.removeAttribute('disabled');
+    classAction(btn, 'remove', 'btn_disabled');
+};
+
+const liveValidation = (ev) => {
+    if (ev) {
+        if (!checkEmpty(firstNameInput) || !checkEmpty(phoneInput) || !checkEmpty(emailInput)) {
+            disable(saveBtn);
+        } else if (checkWrongPhoneInput(phoneInput) && checkWrongMailInput(emailInput)) {
+            enable(saveBtn);
+        } else {
+            disable(saveBtn);
+        }
+
+
+        if (ev.target.id === phoneInput.id) {
+            checkWrongPhoneInput(phoneInput);
+        }
+
+        if (ev.target.id === emailInput.id) {
+            checkWrongMailInput(emailInput);
+        }
     }
 };
 
@@ -66,9 +87,9 @@ const fetchVals = () => {
     && checkWrongMailInput(emailInput)
     && checkWrongPhoneInput(phoneInput)) {
         const res = {
-            FirstName: firstNameInput.value,
-            LastName: lastNameInput.value,
-            PhoneNumber: phoneInput.value,
+            firstName: firstNameInput.value,
+            lastName: lastNameInput.value,
+            phoneNumber: phoneInput.value,
             'E-mail': emailInput.value,
             picUrl,
         };
@@ -76,7 +97,6 @@ const fetchVals = () => {
         classAction(newContactModal, 'toggle', 'modal_disp');
         classAction(newContactModal, 'toggle', 'animate_modal');
         classAction(addNewBtn, 'toggle', 'animate_add_btn');
-        picUrl = null;
         return res;
     }
 
@@ -93,6 +113,9 @@ const fetchVals = () => {
 };
 
 [...input].map((el) => event(el, 'input', liveValidation));
+event(addNewBtn, 'click', () => {
+    picUrl = '';
+});
 
 
 export default fetchVals;
