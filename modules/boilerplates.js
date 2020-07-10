@@ -35,7 +35,7 @@ const contactBoilerPlate = (initial, name, idNum) => `
     </div>
     <div class="contact" id='contact_${initial}_${idNum}'>
         <div class="fake_img" id="fake_img_${initial}_${idNum}">${initial}</div>
-        <div class="name" id="name_${initial}_${idNum}">${name}</div>
+        <div class="name name_${initial}" id="name_${initial}_${idNum}">${name}</div>
     </div>
 </div>
 `;
