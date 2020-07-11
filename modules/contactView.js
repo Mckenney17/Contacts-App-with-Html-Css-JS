@@ -2,9 +2,11 @@
 import { contactBoilerPlate, contactGroupBoilerplate } from './boilerplates.js';
 import DOMStrings from './DOMStrings.js';
 import {
- insertHtml, selector, selectorAll, setStyle, setProp, classAction,
+ insertHtml, selector, selectorAll, setStyle, setProp, classAction, event,
 } from './functionsUI.js';
-const { contactsDiv, newContactModal } = DOMStrings;
+const {
+ contactsDiv, newContactModal, errorAlertBox, errorMessage, okBtn,
+} = DOMStrings;
 
 
 class ContactView {
@@ -62,37 +64,44 @@ class ContactView {
             });
         };
 
-        const name = this.lastname ? `${this.lastname} ${this.firstname}` : `${this.firstname}`;
-        const contactNames = [...selectorAll(`.name_${this.initial}`)].map((el) => el.textContent);
-        contactNames.push(name);
-        const sortContactNames = contactNames.sort((a, b) => a.localeCompare(b));
-        const contactNameIndex = sortContactNames.indexOf(name);
 
         p.then((contactGroupCont) => {
+            const name = this.lastname ? `${this.lastname} ${this.firstname}` : `${this.firstname}`;
             const idNum = contactGroupCont.length;
 
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                 if (contactGroupCont.length === 0) {
                     insertHtml(selector(`#contacts_${this.initial}`), 'beforeend',
                     contactBoilerPlate(this.initial, name, idNum));
 
                     resolve(selector(`#fake_img_${this.initial}_${idNum}`));
-                } else if (contactNameIndex === 0) {
-                    insertHtml(selector(`#contacts_${this.initial}`), 'afterbegin',
-                    contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                    resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
-                } else if (contactNameIndex === sortContactNames.length - 1) {
-                    insertHtml(selector(`#contacts_${this.initial}`), 'beforeend',
-                    contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                    resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
                 } else {
-                    const where = [...selectorAll(`.name_${this.initial}`)].find((el) => el.textContent === sortContactNames[contactNameIndex - 1]);
-                    insertHtml(where.parentNode.parentNode, 'afterend',
-                    contactBoilerPlate(this.initial, name, contactNameIndex));
+                    const contactNames = [...selectorAll(`.name_${this.initial}`)].map((el) => el.textContent);
+                    if (contactNames.includes(name)) {
+                        reject(new Error('Contact name already exists'));
+                    } else {
+                        contactNames.push(name);
+                        const sortContactNames = contactNames.sort((a, b) => a.localeCompare(b));
+                        const contactNameIndex = sortContactNames.indexOf(name);
 
-                    resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
+                        if (contactNameIndex === 0) {
+                            insertHtml(selector(`#contacts_${this.initial}`), 'afterbegin',
+                            contactBoilerPlate(this.initial, name, contactNameIndex));
+
+                            resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
+                        } else if (contactNameIndex === sortContactNames.length - 1) {
+                            insertHtml(selector(`#contacts_${this.initial}`), 'beforeend',
+                            contactBoilerPlate(this.initial, name, contactNameIndex));
+
+                            resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
+                        } else {
+                            const where = [...selectorAll(`.name_${this.initial}`)].find((el) => el.textContent === sortContactNames[contactNameIndex - 1]);
+                            insertHtml(where.parentNode.parentNode, 'afterend',
+                            contactBoilerPlate(this.initial, name, contactNameIndex));
+
+                            resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
+                        }
+                    }
                 }
             });
         }).then((contactFakeImg) => {
@@ -105,11 +114,19 @@ class ContactView {
             }
 
             setTimeout(() => {
-                classAction(selector(`#contact_div_${this.initial}_${contactNameIndex}`), 'add', 'appear');
+                classAction(selector(`#contact_div_${this.initial}_${String(contactFakeImg.id).slice(-1)}`), 'add', 'appear');
             }, 0);
-        }).then(() => {
-            // while insertion ends, id numbers have to be rearranged
             rearrangeIDNums(this.initial);
+        }).catch((err) => {
+            setStyle(errorAlertBox, 'display', 'flex');
+            setProp(errorMessage, 'textContent', err.message);
+            setTimeout(() => {
+                classAction(errorAlertBox, 'add', 'appear');
+            }, 0);
+            event(okBtn, 'click', () => {
+                setStyle(errorAlertBox, 'display', 'none');
+                classAction(errorAlertBox, 'remove', 'appear');
+            });
         });
     }
 }

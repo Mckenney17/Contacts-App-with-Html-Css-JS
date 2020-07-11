@@ -1,3 +1,27 @@
+.anim_sel_click {
+    #delete_btn {
+        display: flex !important;
+    }
+
+    #options_btn {
+        transform: translateX(20px);
+    }
+}
+
+.anim_opt_click {
+    display: initial !important;
+}
+
+.animate_opt_cont_modal {
+    top: 45% !important;
+    opacity: 1 !important;
+}
+
+.grow_font {
+    font-size: 19.2px !important;
+}
+
+
 .animate_input {
     .input {
         border: 2px solid $primCol !important;
