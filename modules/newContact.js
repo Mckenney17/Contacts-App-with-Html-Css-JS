@@ -54,7 +54,7 @@ const enable = (btn) => {
 
 const liveValidation = (ev) => {
     if (ev) {
-        if (!checkEmpty(firstNameInput) || !checkEmpty(phoneInput) || !checkEmpty(emailInput)) {
+        if (!checkEmpty(firstNameInput) || !checkEmpty(phoneInput)) {
             disable(saveBtn);
         } else if (checkWrongPhoneInput(phoneInput) && checkWrongMailInput(emailInput)) {
             enable(saveBtn);
@@ -83,7 +83,6 @@ event(contactPic, 'change', () => {
 const fetchVals = () => {
     if (checkEmpty(firstNameInput)
     && checkEmpty(phoneInput)
-    && checkEmpty(emailInput)
     && checkWrongMailInput(emailInput)
     && checkWrongPhoneInput(phoneInput)) {
         const res = {

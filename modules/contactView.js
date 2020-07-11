@@ -106,6 +106,7 @@ class ContactView {
                 setStyle(contactFakeImg, 'background', `${this.color}`);
             }
 
+            // while insertion ends, id numbers have to be rearranged
             rearrangeIDNums(this.initial);
         });
     }
