@@ -65,6 +65,9 @@ html, body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-bottom: 10px;
+  opacity: 0;
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease;
 }
 
 .contacts_div .contact_class .contacts .contact_div .check_box_div {
@@ -556,6 +559,10 @@ html, body {
 
 .btn_disabled {
   opacity: 0.5 !important;
+}
+
+.appear {
+  opacity: 1 !important;
 }
 
 .container {

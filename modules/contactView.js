@@ -62,9 +62,14 @@ class ContactView {
             });
         };
 
+        const name = this.lastname ? `${this.lastname} ${this.firstname}` : `${this.firstname}`;
+        const contactNames = [...selectorAll(`.name_${this.initial}`)].map((el) => el.textContent);
+        contactNames.push(name);
+        const sortContactNames = contactNames.sort((a, b) => a.localeCompare(b));
+        const contactNameIndex = sortContactNames.indexOf(name);
+
         p.then((contactGroupCont) => {
             const idNum = contactGroupCont.length;
-            const name = this.lastname ? `${this.lastname} ${this.firstname}` : `${this.firstname}`;
 
             return new Promise((resolve) => {
                 if (contactGroupCont.length === 0) {
@@ -72,29 +77,22 @@ class ContactView {
                     contactBoilerPlate(this.initial, name, idNum));
 
                     resolve(selector(`#fake_img_${this.initial}_${idNum}`));
+                } else if (contactNameIndex === 0) {
+                    insertHtml(selector(`#contacts_${this.initial}`), 'afterbegin',
+                    contactBoilerPlate(this.initial, name, contactNameIndex));
+
+                    resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
+                } else if (contactNameIndex === sortContactNames.length - 1) {
+                    insertHtml(selector(`#contacts_${this.initial}`), 'beforeend',
+                    contactBoilerPlate(this.initial, name, contactNameIndex));
+
+                    resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
                 } else {
-                    const contactNames = [...selectorAll(`.name_${this.initial}`)].map((el) => el.textContent);
-                    contactNames.push(name);
-                    const sortContactNames = contactNames.sort((a, b) => a.localeCompare(b));
-                    const contactNameIndex = sortContactNames.indexOf(name);
+                    const where = [...selectorAll(`.name_${this.initial}`)].find((el) => el.textContent === sortContactNames[contactNameIndex - 1]);
+                    insertHtml(where.parentNode.parentNode, 'afterend',
+                    contactBoilerPlate(this.initial, name, contactNameIndex));
 
-                    if (contactNameIndex === 0) {
-                        insertHtml(selector(`#contacts_${this.initial}`), 'afterbegin',
-                        contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                        resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
-                    } else if (contactNameIndex === sortContactNames.length - 1) {
-                        insertHtml(selector(`#contacts_${this.initial}`), 'beforeend',
-                        contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                        resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
-                    } else {
-                        const where = [...selectorAll(`.name_${this.initial}`)].find((el) => el.textContent === sortContactNames[contactNameIndex - 1]);
-                        insertHtml(where.parentNode.parentNode, 'afterend',
-                        contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                        resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
-                    }
+                    resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
                 }
             });
         }).then((contactFakeImg) => {
@@ -106,6 +104,10 @@ class ContactView {
                 setStyle(contactFakeImg, 'background', `${this.color}`);
             }
 
+            setTimeout(() => {
+                classAction(selector(`#contact_div_${this.initial}_${contactNameIndex}`), 'add', 'appear');
+            }, 0);
+        }).then(() => {
             // while insertion ends, id numbers have to be rearranged
             rearrangeIDNums(this.initial);
         });

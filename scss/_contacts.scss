@@ -22,6 +22,8 @@
                 position: relative;
                 @include flex(space-between, center);
                 margin-bottom: 10px;
+                opacity: 0;
+                transition: opacity .3s ease;
 
                 .check_box_div {
                     @include flex(center, center);
@@ -53,7 +55,6 @@
                         height: 40px;
                         border-radius: 50%;
                         @include flex(center,center);
-                        // background: #07E7F8;
                         margin: 0 10px;
                         font: {
                             size: 27px;
