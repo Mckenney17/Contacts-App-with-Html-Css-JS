@@ -1,7 +1,9 @@
 const selector = (elem) => document.querySelector(elem);
 const selectorAll = (elem) => document.querySelectorAll(elem);
 const DOMStrings = {
+    container: selector('.container'),
     contactsDiv: selector('.contacts_div'),
+    searchBar: selector('.search_bar'),
     addNewBtn: selector('.add_new_contact_btn'),
     optionsBtn: selector('#options_btn'),
     selectModal: selector('.options_cont'),

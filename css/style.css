@@ -315,11 +315,13 @@ html, body {
 
 .contact_profile {
   width: 100%;
-  display: none;
+  opacity: 0;
+  -webkit-transition: opacity .2s ease;
+  transition: opacity .2s ease;
 }
 
 .contact_profile .top_section {
-  height: 45%;
+  height: 250px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -330,11 +332,11 @@ html, body {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.1))), #07E7F8;
-  background: linear-gradient(360deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), #07E7F8;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.1))), var(--contactColor);
+  background: linear-gradient(360deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), var(--contactColor);
 }
 
-.contact_profile .top_section .initial {
+.contact_profile .top_section .ct_class {
   font-weight: 200;
   font-size: 200px;
   text-align: center;
@@ -390,7 +392,7 @@ html, body {
 .contact_profile .bottom_section .phone, .contact_profile .bottom_section .mail {
   width: 300px;
   height: 50px;
-  background: #07E7F8;
+  background: var(--contactColor);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -438,7 +440,7 @@ html, body {
   left: -4px;
   bottom: -4px;
   right: -4px;
-  border: 1px solid #07E7F8;
+  border: 1px solid var(--contactColor);
   border-radius: 5px;
 }
 
@@ -724,7 +726,7 @@ html, body {
           transform: translate(-50%, -50%);
   width: 300px;
   border-radius: 10px;
-  z-index: 50;
+  z-index: 10;
   -webkit-box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
   display: -webkit-box;

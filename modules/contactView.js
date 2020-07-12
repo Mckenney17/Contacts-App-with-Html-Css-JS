@@ -1,110 +1,94 @@
 // contact class
-import { contactBoilerPlate, contactGroupBoilerplate } from './boilerplates.js';
+import { contactBoilerPlate, contactGroupBoilerplate, contactProfile } from './boilerplates.js';
 import DOMStrings from './DOMStrings.js';
 import {
  insertHtml, selector, selectorAll, setStyle, setProp, classAction, event,
 } from './functionsUI.js';
 const {
- contactsDiv, newContactModal, errorAlertBox, errorMessage, okBtn,
+ contactsDiv, newContactModal, errorAlertBox, errorMessage, okBtn, container,
 } = DOMStrings;
 
 
 class ContactView {
     constructor({
-        initial, firstName, lastName, picUrl, color,
+        ctClass, firstName, lastName, picUrl, color, initials, phoneNumber, email,
     }) {
-        if (!initial) return;
+        if (!ctClass) return;
 
-        this.initial = initial.toUpperCase();
-        this.firstname = firstName;
-        this.lastname = lastName;
+        this.ctClass = ctClass;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.picUrl = picUrl;
         this.color = color;
-
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.name = this.lastName ? `${this.lastName} ${this.firstName}` : `${this.firstName}`;
+        this.initials = initials;
 
         const p = new Promise((resolve) => {
             if ([...selectorAll('.contact_class')].length === 0) {
-                insertHtml(newContactModal, 'beforebegin', contactGroupBoilerplate(this.initial));
-                resolve([...selectorAll(`#contacts_${this.initial} .contact_div`)]);
+                insertHtml(newContactModal, 'beforebegin', contactGroupBoilerplate(this.ctClass));
+                resolve([...selectorAll(`#contacts_${this.ctClass} .contact_div`)]);
             } else {
                 const classIDs = [...selectorAll('.contact_class')].map((el) => el.id);
-                if (classIDs.includes(`class_${this.initial}`)) {
-                    resolve([...selectorAll(`#contacts_${this.initial} .contact_div`)]);
+                if (classIDs.includes(`class_${this.ctClass}`)) {
+                    resolve([...selectorAll(`#contacts_${this.ctClass} .contact_div`)]);
                 } else {
-                    classIDs.push(`class_${this.initial}`);
+                    classIDs.push(`class_${this.ctClass}`);
                     const sortClassIDs = classIDs.sort((a, b) => a.localeCompare(b));
-                    const classIndex = sortClassIDs.indexOf(`class_${this.initial}`);
+                    const classIndex = sortClassIDs.indexOf(`class_${this.ctClass}`);
 
                     if (classIndex === 0) {
-                        insertHtml(contactsDiv, 'afterbegin', contactGroupBoilerplate(this.initial));
-                        resolve([...selectorAll(`#contacts_${this.initial} .contact_div`)]);
+                        insertHtml(contactsDiv, 'afterbegin', contactGroupBoilerplate(this.ctClass));
+                        resolve([...selectorAll(`#contacts_${this.ctClass} .contact_div`)]);
                     } else if (classIndex === sortClassIDs.length - 1) {
-                        insertHtml(newContactModal, 'beforebegin', contactGroupBoilerplate(this.initial));
-                        resolve([...selectorAll(`#contacts_${this.initial} .contact_div`)]);
+                        insertHtml(newContactModal, 'beforebegin', contactGroupBoilerplate(this.ctClass));
+                        resolve([...selectorAll(`#contacts_${this.ctClass} .contact_div`)]);
                     } else {
                         const where = selector(`#${sortClassIDs[classIndex - 1]}`);
-                        insertHtml(where, 'afterend', contactGroupBoilerplate(this.initial));
-                        resolve([...selectorAll(`#contacts_${this.initial} .contact_div`)]);
+                        insertHtml(where, 'afterend', contactGroupBoilerplate(this.ctClass));
+                        resolve([...selectorAll(`#contacts_${this.ctClass} .contact_div`)]);
                     }
                 }
             }
         });
 
-        const rearrangeIDNums = (initialClass) => {
-            const { children } = selector(`#contacts_${initialClass}`);
 
-            const contactDivs = [...selectorAll(`#contacts_${initialClass} .contact_div`)];
-            contactDivs.map((el) => {
-                const indexOfContact = [...children].indexOf(el);
-                el.id = `contact_div_${initialClass}_${indexOfContact}`;
-                el.children[0].children[0].id = `check_box_${initialClass}_${indexOfContact}`;
-                el.children[1].id = `contact_${initialClass}_${indexOfContact}`;
-                el.children[1].children[0].id = `fake_img_${initialClass}_${indexOfContact}`;
-                el.children[1].children[1].id = `name_${initialClass}_${indexOfContact}`;
-            });
-        };
+        p.then((contactGroupCont) => new Promise((resolve, reject) => {
+            if (contactGroupCont.length === 0) {
+                insertHtml(selector(`#contacts_${this.ctClass}`), 'beforeend',
+                contactBoilerPlate(this.ctClass, this.name, this.initials));
 
-
-        p.then((contactGroupCont) => {
-            const name = this.lastname ? `${this.lastname} ${this.firstname}` : `${this.firstname}`;
-            const idNum = contactGroupCont.length;
-
-            return new Promise((resolve, reject) => {
-                if (contactGroupCont.length === 0) {
-                    insertHtml(selector(`#contacts_${this.initial}`), 'beforeend',
-                    contactBoilerPlate(this.initial, name, idNum));
-
-                    resolve(selector(`#fake_img_${this.initial}_${idNum}`));
+                resolve(selector(`#fake_img_${this.ctClass}_${this.initials}`));
+            } else {
+                const contactNames = [...selectorAll(`.name_${this.ctClass}`)].map((el) => el.textContent);
+                if (contactNames.includes(this.name)) {
+                    reject(new Error('Contact name already exists'));
                 } else {
-                    const contactNames = [...selectorAll(`.name_${this.initial}`)].map((el) => el.textContent);
-                    if (contactNames.includes(name)) {
-                        reject(new Error('Contact name already exists'));
+                    contactNames.push(this.name);
+                    const sortContactNames = contactNames.sort((a, b) => a.localeCompare(b));
+                    const contactNameIndex = sortContactNames.indexOf(this.name);
+
+                    if (contactNameIndex === 0) {
+                        insertHtml(selector(`#contacts_${this.ctClass}`), 'afterbegin',
+                        contactBoilerPlate(this.ctClass, this.name, this.initials));
+
+                        resolve(selector(`#fake_img_${this.ctClass}_${this.initials}`));
+                    } else if (contactNameIndex === sortContactNames.length - 1) {
+                        insertHtml(selector(`#contacts_${this.ctClass}`), 'beforeend',
+                        contactBoilerPlate(this.ctClass, this.name, this.initials));
+
+                        resolve(selector(`#fake_img_${this.ctClass}_${this.initials}`));
                     } else {
-                        contactNames.push(name);
-                        const sortContactNames = contactNames.sort((a, b) => a.localeCompare(b));
-                        const contactNameIndex = sortContactNames.indexOf(name);
+                        const where = [...selectorAll(`.name_${this.ctClass}`)].find((el) => el.textContent === sortContactNames[contactNameIndex - 1]);
+                        insertHtml(where.parentNode.parentNode, 'afterend',
+                        contactBoilerPlate(this.ctClass, this.name, this.initials));
 
-                        if (contactNameIndex === 0) {
-                            insertHtml(selector(`#contacts_${this.initial}`), 'afterbegin',
-                            contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                            resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
-                        } else if (contactNameIndex === sortContactNames.length - 1) {
-                            insertHtml(selector(`#contacts_${this.initial}`), 'beforeend',
-                            contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                            resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
-                        } else {
-                            const where = [...selectorAll(`.name_${this.initial}`)].find((el) => el.textContent === sortContactNames[contactNameIndex - 1]);
-                            insertHtml(where.parentNode.parentNode, 'afterend',
-                            contactBoilerPlate(this.initial, name, contactNameIndex));
-
-                            resolve(selector(`#fake_img_${this.initial}_${contactNameIndex}`));
-                        }
+                        resolve(selector(`#fake_img_${this.ctClass}_${this.initials}`));
                     }
                 }
-            });
-        }).then((contactFakeImg) => {
+            }
+        })).then((contactFakeImg) => {
             if (this.picUrl) {
                 setProp(contactFakeImg, 'textContent', '');
                 setStyle(contactFakeImg, 'background', `url(${this.picUrl})`);
@@ -114,9 +98,9 @@ class ContactView {
             }
 
             setTimeout(() => {
-                classAction(selector(`#contact_div_${this.initial}_${String(contactFakeImg.id).slice(-1)}`), 'add', 'appear');
+                classAction(selector(`#contact_div_${this.ctClass}_${this.initials}`), 'add', 'appear');
             }, 0);
-            rearrangeIDNums(this.initial);
+            event(contactFakeImg.parentNode.parentNode, 'click', () => { this.viewProfile(); });
         }).catch((err) => {
             setStyle(errorAlertBox, 'display', 'flex');
             setProp(errorMessage, 'textContent', err.message);
@@ -124,8 +108,44 @@ class ContactView {
                 classAction(errorAlertBox, 'add', 'appear');
             }, 0);
             event(okBtn, 'click', () => {
-                setStyle(errorAlertBox, 'display', 'none');
                 classAction(errorAlertBox, 'remove', 'appear');
+                setStyle(errorAlertBox, 'display', 'none');
+            });
+        });
+    }
+
+    viewProfile() {
+        const [s, c] = [...container.children];
+        const pfp = new Promise((resolve) => {
+            [s, c].map((ch) => setStyle(ch, 'display', 'none'));
+            insertHtml(container, 'beforeend', contactProfile(this.ctClass, this.name, this.phoneNumber, this.email));
+            resolve({
+                profileHtml: selector('.contact_profile'),
+                coverPhoto: selector('.top_section'),
+                goBack: selector('.back_button'),
+                bottomSection: selector('.bottom_section'),
+            });
+        });
+
+        pfp.then(({
+            coverPhoto, profileHtml, goBack, bottomSection,
+        }) => {
+            if (this.picUrl) {
+                coverPhoto.style.removeProperty('background');
+                setProp(coverPhoto.children[2], 'textContent', '');
+                setStyle(coverPhoto, 'background-image', `url(${this.picUrl})`);
+                classAction(coverPhoto, 'add', 'makePicBg');
+            } else {
+                profileHtml.style.setProperty('--contactColor', `${this.color}`);
+            }
+
+            bottomSection.style.setProperty('--contactColor', `${this.color}`);
+
+            classAction(profileHtml, 'add', 'appear');
+
+            event(goBack, 'click', () => {
+                setProp(profileHtml, 'outerHTML', '');
+                [s, c].map((ch) => setStyle(ch, 'display', 'block'));
             });
         });
     }
