@@ -124,11 +124,12 @@ class Contact {
                 coverPhoto: selector('.top_section'),
                 goBack: selector('.back_button'),
                 bottomSection: selector('.bottom_section'),
+                emailHtml: selector('.mail'),
             });
         });
 
         pfp.then(({
-            coverPhoto, profileHtml, goBack, bottomSection,
+            coverPhoto, profileHtml, goBack, bottomSection, emailHtml,
         }) => {
             if (this.picUrl) {
                 coverPhoto.style.removeProperty('background');
@@ -140,6 +141,8 @@ class Contact {
             }
 
             bottomSection.style.setProperty('--contactColor', `${this.color}`);
+
+            if (!this.email) setStyle(emailHtml, 'display', 'none');
 
             classAction(profileHtml, 'add', 'appear');
 
