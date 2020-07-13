@@ -13,8 +13,6 @@ class Contact {
     constructor({
         ctClass, firstName, lastName, picUrl, color, initials, phoneNumber, email,
     }) {
-        if (!ctClass) return;
-
         this.ctClass = ctClass;
         this.firstName = firstName;
         this.lastName = lastName;
