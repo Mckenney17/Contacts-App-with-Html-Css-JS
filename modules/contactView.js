@@ -9,7 +9,7 @@ const {
 } = DOMStrings;
 
 
-class ContactView {
+class Contact {
     constructor({
         ctClass, firstName, lastName, picUrl, color, initials, phoneNumber, email,
     }) {
@@ -25,7 +25,7 @@ class ContactView {
         this.name = this.lastName ? `${this.lastName} ${this.firstName}` : `${this.firstName}`;
         this.initials = initials;
 
-        const p = new Promise((resolve) => {
+        const listView = new Promise((resolve) => {
             if ([...selectorAll('.contact_class')].length === 0) {
                 insertHtml(newContactModal, 'beforebegin', contactGroupBoilerplate(this.ctClass));
                 resolve([...selectorAll(`#contacts_${this.ctClass} .contact_div`)]);
@@ -54,7 +54,7 @@ class ContactView {
         });
 
 
-        p.then((contactGroupCont) => new Promise((resolve, reject) => {
+        listView.then((contactGroupCont) => new Promise((resolve, reject) => {
             if (contactGroupCont.length === 0) {
                 insertHtml(selector(`#contacts_${this.ctClass}`), 'beforeend',
                 contactBoilerPlate(this.ctClass, this.name, this.initials));
@@ -100,7 +100,7 @@ class ContactView {
             setTimeout(() => {
                 classAction(selector(`#contact_div_${this.ctClass}_${this.initials}`), 'add', 'appear');
             }, 0);
-            event(contactFakeImg.parentNode.parentNode, 'click', () => { this.viewProfile(); });
+            event(contactFakeImg.parentNode.parentNode, 'click', () => { this.profileView(); });
         }).catch((err) => {
             setStyle(errorAlertBox, 'display', 'flex');
             setProp(errorMessage, 'textContent', err.message);
@@ -114,7 +114,7 @@ class ContactView {
         });
     }
 
-    viewProfile() {
+    profileView() {
         const [s, c] = [...container.children];
         const pfp = new Promise((resolve) => {
             [s, c].map((ch) => setStyle(ch, 'display', 'none'));
@@ -151,4 +151,4 @@ class ContactView {
     }
 }
 
-export default ContactView;
+export default Contact;
