@@ -116,5 +116,4 @@ event(addNewBtn, 'click', () => {
     picUrl = '';
 });
 
-
 export default fetchVals;

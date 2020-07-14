@@ -24,6 +24,7 @@ const DOMStrings = {
     errorAlertBox: selector('.error_alert_box'),
     errorMessage: selector('.error_message'),
     okBtn: selector('#ok_btn'),
+    searchInput: selector('.searcher'),
 
     contactClass: selectorAll('.contact_class'),
 };
