@@ -1,8 +1,8 @@
 .contacts_div {
     margin: 0 auto;
     width: 97%;
-    height: 85%;
-    position: relative;
+    // height: 85%;
+    // position: relative;
     
     .contact_class {
         width: 100%;
@@ -71,24 +71,6 @@
                     }
                 }
             }
-        }
-    }
-
-    .add_new_contact_btn {
-        position: absolute;
-        @include flex(center, center);
-        color: #fff;
-        bottom: 9%;
-        right: 9%;
-        width: 50px;
-        height: 50px;
-        transition:  transform .5s ease;
-        background: $addCol;
-        border-radius: 50%;
-        box-shadow: 0 3px 10px rgba(#000, (22 / 100));
-        font: {
-            size: 53px;
-            weight: weight(exlight);
         }
     }
 }

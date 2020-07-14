@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { setStyle, selectorAll, classAction } from './functionsUI.js';
 
 const filterUIContacts = (filteredContacts) => {

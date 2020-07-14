@@ -32,8 +32,6 @@ html, body {
 .contacts_div {
   margin: 0 auto;
   width: 97%;
-  height: 85%;
-  position: relative;
 }
 
 .contacts_div .contact_class {
@@ -140,34 +138,6 @@ html, body {
   font-size: 19px;
 }
 
-.contacts_div .add_new_contact_btn {
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  color: #fff;
-  bottom: 9%;
-  right: 9%;
-  width: 50px;
-  height: 50px;
-  -webkit-transition: -webkit-transform .5s ease;
-  transition: -webkit-transform .5s ease;
-  transition: transform .5s ease;
-  transition: transform .5s ease, -webkit-transform .5s ease;
-  background: #006eff;
-  border-radius: 50%;
-  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
-  font-size: 53px;
-  font-weight: 200;
-}
-
 .add_new_contact_modal {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -177,7 +147,10 @@ html, body {
       -ms-flex-direction: column;
           flex-direction: column;
   position: absolute;
-  width: 100%;
+  width: 95%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   margin: 0 auto;
   background: #fff;
   bottom: 20%;
@@ -595,6 +568,130 @@ html, body {
   width: 600px;
   height: 90%;
   padding: 0 15px;
+  position: relative;
+}
+
+.container .add_new_contact_btn {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
+  bottom: 9%;
+  right: 9%;
+  width: 50px;
+  height: 50px;
+  -webkit-transition: -webkit-transform .5s ease;
+  transition: -webkit-transform .5s ease;
+  transition: transform .5s ease;
+  transition: transform .5s ease, -webkit-transform .5s ease;
+  background: #006eff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+  font-size: 53px;
+  font-weight: 200;
+}
+
+.container .error_alert_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 300px;
+  border-radius: 10px;
+  z-index: 10;
+  -webkit-box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
+  opacity: 0;
+}
+
+.container .error_alert_box .sign_msg_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container .error_alert_box .sign_msg_div .error_sign {
+  font-size: 130px;
+  -webkit-animation: blink .2s linear infinite;
+          animation: blink .2s linear infinite;
+}
+
+.container .error_alert_box .sign_msg_div .error_message {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  font-weight: 500;
+  color: red;
+}
+
+.container .error_alert_box .sugg_btn_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  border-top: 2px solid rgba(0, 0, 0, 0.06);
+  padding: 3px 10px 7px 10px;
+}
+
+.container .error_alert_box .sugg_btn_div .suggestion {
+  font-size: 12px;
+  color: #a7a7a7;
+  margin-bottom: 5px;
+}
+
+.container .error_alert_box .sugg_btn_div .suggestion span {
+  color: #1a73e8;
+  font-weight: 500;
+}
+
+.container .error_alert_box .sugg_btn_div button {
+  width: 35px;
+  background: #1a73e8;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 3px;
+  width: 100%;
+  height: 30px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.container .error_alert_box .sugg_btn_div button:hover {
+  background: #488fed;
 }
 
 .search_bar {
@@ -716,101 +813,6 @@ html, body {
 
 .search_bar .options_cont #select_all {
   border-top: 1px solid rgba(0, 0, 0, 0.02);
-}
-
-.error_alert_box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 300px;
-  border-radius: 10px;
-  z-index: 10;
-  -webkit-box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  display: none;
-  opacity: 0;
-}
-
-.error_alert_box .sign_msg_div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.error_alert_box .sign_msg_div .error_sign {
-  font-size: 130px;
-  -webkit-animation: blink .2s linear infinite;
-          animation: blink .2s linear infinite;
-}
-
-.error_alert_box .sign_msg_div .error_message {
-  -webkit-transform: translateY(-20px);
-          transform: translateY(-20px);
-  font-weight: 500;
-  color: red;
-}
-
-.error_alert_box .sugg_btn_div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 100%;
-  border-top: 2px solid rgba(0, 0, 0, 0.06);
-  padding: 3px 10px 7px 10px;
-}
-
-.error_alert_box .sugg_btn_div .suggestion {
-  font-size: 12px;
-  color: #a7a7a7;
-  margin-bottom: 5px;
-}
-
-.error_alert_box .sugg_btn_div .suggestion span {
-  color: #1a73e8;
-  font-weight: 500;
-}
-
-.error_alert_box .sugg_btn_div button {
-  width: 35px;
-  background: #1a73e8;
-  border: none;
-  outline: none;
-  color: #fff;
-  border-radius: 3px;
-  width: 100%;
-  height: 30px;
-  font-size: 17px;
-  font-weight: 500;
-}
-
-.error_alert_box .sugg_btn_div button:hover {
-  background: #488fed;
 }
 
 @-webkit-keyframes blink {

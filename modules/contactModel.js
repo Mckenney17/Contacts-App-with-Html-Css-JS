@@ -15,7 +15,8 @@ const manipulatedDataForApp = () => {
         phoneNumber,
         email,
         picUrl,
-        initials: lastName ? `${lastName[0].toUpperCase()}${firstName[0].toUpperCase()}` : `${firstName[0].toUpperCase()}${firstName[1].toLowerCase()}`,
+        uniqueCode: lastName ? [...lastName, ...firstName].map((ch) => ch.codePointAt(0)).join('').toString(16)
+                : [...firstName].map((ch) => ch.codePointAt(0)).join('').toString(16),
         color: ['#fa903e', '#5bb974', '#fcc934', '#ee675c', '#4ecde6', '#af5cf7'][Math.trunc(Math.random() * 6)],
     };
     return contactDataForApp;

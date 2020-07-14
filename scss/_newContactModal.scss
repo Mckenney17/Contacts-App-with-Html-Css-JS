@@ -1,7 +1,9 @@
 .add_new_contact_modal {
     @include flex(null,null,column);
     position: absolute;
-    width: 100%;
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
     margin: 0 auto;
     background: #fff;
     bottom: 20%;
