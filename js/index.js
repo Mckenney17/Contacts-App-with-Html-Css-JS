@@ -26,8 +26,6 @@ event(saveBtn, 'click', () => {
     allContacts[Object.keys(allContacts).length] = new Contact(contactData());
 });
 
-event(searchInput, 'input', (ev) => {
-    if (ev) {
-        filterUIContacts(filteredContacts());
-    }
+event(searchInput, 'input', () => {
+    filterUIContacts(filteredContacts());
 });

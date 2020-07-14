@@ -81,34 +81,18 @@ event(contactPic, 'change', () => {
 });
 
 const fetchVals = () => {
-    if (checkEmpty(firstNameInput)
-    && checkEmpty(phoneInput)
-    && checkWrongMailInput(emailInput)
-    && checkWrongPhoneInput(phoneInput)) {
-        const res = {
-            firstName: firstNameInput.value,
-            lastName: lastNameInput.value,
-            phoneNumber: phoneInput.value,
-            'E-mail': emailInput.value,
-            picUrl,
-        };
-        resetModal();
-        classAction(newContactModal, 'toggle', 'modal_disp');
-        classAction(newContactModal, 'toggle', 'animate_modal');
-        classAction(addNewBtn, 'toggle', 'animate_add_btn');
-        return res;
-    }
-
-
-    if (!checkWrongMailInput(emailInput)) {
-        classAction(emailInput.parentNode, 'add', 'error_alert');
-    }
-    if (!checkWrongMailInput(phoneInput)) {
-        classAction(phoneInput.parentNode, 'add', 'error_alert');
-    }
-
-    [firstNameInput, emailInput, phoneInput].map((el) => el.value === '' && classAction(el.parentNode, 'add', 'error_alert'));
-    return false;
+    const res = {
+        firstName: firstNameInput.value,
+        lastName: lastNameInput.value,
+        phoneNumber: phoneInput.value,
+        'E-mail': emailInput.value,
+        picUrl,
+    };
+    resetModal();
+    classAction(newContactModal, 'toggle', 'modal_disp');
+    classAction(newContactModal, 'toggle', 'animate_modal');
+    classAction(addNewBtn, 'toggle', 'animate_add_btn');
+    return res;
 };
 
 [...input].map((el) => event(el, 'input', liveValidation));

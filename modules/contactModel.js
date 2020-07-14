@@ -3,7 +3,6 @@ import fetchVals from './newContact.js';
 
 const manipulatedDataForApp = () => {
     const contactDataByUser = fetchVals();
-    if (!contactDataByUser) return;
     const {
  firstName, lastName, phoneNumber, 'E-mail': email, picUrl,
 } = contactDataByUser;
