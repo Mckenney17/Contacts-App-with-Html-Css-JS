@@ -113,9 +113,9 @@ class Contact {
     }
 
     profileView() {
-        const [s, c] = [...container.children];
+        const [sch, cnt, btn] = [...container.children];
         const pfp = new Promise((resolve) => {
-            [s, c].map((ch) => setStyle(ch, 'display', 'none'));
+            [sch, cnt, btn].map((ch) => setStyle(ch, 'display', 'none'));
             insertHtml(container, 'beforeend', contactProfile(this.ctClass, this.name, this.phoneNumber, this.email));
             resolve({
                 profileHtml: selector('.contact_profile'),
@@ -146,7 +146,8 @@ class Contact {
 
             event(goBack, 'click', () => {
                 setProp(profileHtml, 'outerHTML', '');
-                [s, c].map((ch) => setStyle(ch, 'display', 'block'));
+                [sch, cnt].map((ch) => setStyle(ch, 'display', 'block'));
+                setStyle(btn, 'display', 'flex');
             });
         });
     }
