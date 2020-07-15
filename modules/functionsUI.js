@@ -7,9 +7,9 @@ const {
 const selector = (elem) => document.querySelector(elem);
 const selectorAll = (elem) => document.querySelectorAll(elem);
 
-const classAction = (el, action, classValue) => {
+const classAction = (el, action, ...classValue) => {
     if (!el) return;
-    el.classList[action](classValue);
+    el.classList[action](...classValue);
 };
 
 const setStyle = (el, prop, value) => {
@@ -35,10 +35,7 @@ const event = (elem, action, callback) => {
 const resetModal = () => {
     [...inputCont].map((el) => {
         setProp(el.children[0], 'value', '');
-        classAction(el, 'remove', 'animate_input');
-        classAction(el, 'remove', 'input_filled');
-        classAction(el, 'remove', 'input_focused');
-        classAction(el, 'remove', 'error_alert');
+        classAction(el, 'remove', 'animate_input', 'input_filled', 'input_focused', 'error_alert');
     });
     setStyle(fakeContactPic, 'display', 'flex');
     classAction(contactPicCont, 'remove', 'makePicBg');

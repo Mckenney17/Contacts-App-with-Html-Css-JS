@@ -6,9 +6,8 @@ import DOMStrings from './DOMStrings.js';
 const {
     addNewBtn, selectModal,
     optionsBtn, newContactModal, inputCont,
-    fakePlaceholder, input, contactDiv,
-    searchBarBtns, checkBoxes, deleteBtn,
-    allSelect, cancelOpr,
+    fakePlaceholder, input, searchBarBtns,
+    deleteBtn, cancelOpr,
 } = DOMStrings;
 
 // Showing the New Contact adder Modal
@@ -36,10 +35,7 @@ const inputPlaceholderAnim = (ev) => {
                 classAction(el, 'remove', 'input_focused');
             }
         } else {
-            classAction(el, 'remove', 'animate_input');
-            classAction(el, 'remove', 'input_filled');
-            classAction(el, 'remove', 'input_focused');
-            classAction(el, 'remove', 'error_alert');
+            classAction(el, 'remove', 'animate_input', 'input_filled', 'input_focused', 'error_alert');
         }
     });
     classAction(ev.target.parentNode, 'add', 'animate_input');
