@@ -23,7 +23,9 @@ event(optionsBtn, 'click', toggleSelectionModal);
 
 
 event(saveBtn, 'click', () => {
-    allContacts[Object.keys(allContacts).length] = new Contact(contactData());
+    const { contactDataForApp, uniqueCode } = contactData();
+    allContacts.set(uniqueCode, new Contact(contactDataForApp));
+    console.log(allContacts);
 });
 
 event(searchInput, 'input', () => {
