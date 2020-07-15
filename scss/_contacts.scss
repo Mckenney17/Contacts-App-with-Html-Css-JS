@@ -11,9 +11,9 @@
         .alpha_label {
             width: 5%;
             font: {
-                weight: weight(bold);
+                weight: weight(exbold);
             }
-            color: $primCol;
+            color: $googBlue;
         }
 
         .contacts {
@@ -34,7 +34,7 @@
                         opacity: 0;
                         width: 0;
                         height: 0;
-                        border: 2px solid $hoverbgoptions;
+                        border: 2px solid $searchPlaceholder;
                         border-radius: 5px;
                         transition: width .2s linear,
                                     height .2s linear;
@@ -60,14 +60,15 @@
                             size: 27px;
                             weight: weight(normal);
                         }
-                        color: #fff;
+                        color: $darkTheme;
                     }
     
                     .name {
                         font: {
-                            weight: weight(light);
+                            weight: weight(normal);
                             size: 19px;
                         }
+                        color: #fff;
                     }
                 }
             }

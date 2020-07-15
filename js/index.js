@@ -21,16 +21,9 @@ const {
 event(addNewBtn, 'click', toggleNewContactModal);
 event(optionsBtn, 'click', toggleSelectionModal);
 
-if (localStorage.getItem('storedContacts')) {
-    const storedContacts = JSON.parse(localStorage.getItem('storedContacts'));
-    for (const o of Object.keys(storedContacts)) {
-        allContacts[o] = new Contact(storedContacts[o]);
-    }
-}
 
 event(saveBtn, 'click', () => {
     allContacts[Object.keys(allContacts).length] = new Contact(contactData());
-    localStorage.setItem('storedContacts', JSON.stringify(allContacts));
 });
 
 event(searchInput, 'input', () => {

@@ -24,14 +24,14 @@
 
 .animate_input {
     .input {
-        border: 2px solid $primCol !important;
+        border: 2px solid $googBlue !important;
     }
     .fake_placeholder {
         top: -2% !important;
         left: 3% !important;
-        background: #fff !important;
+        background: $darkTheme !important;
         padding: 0 5px !important;
-        color: $primCol !important;
+        color: $googBlue !important;
         font-weight: 500;
         font-size: 13px !important;
     }
@@ -48,10 +48,10 @@
 
 .input_focused {
     .input {
-        border: 2px solid $primCol !important;
+        border: 2px solid $googBlue !important;
     }
     .fake_placeholder {
-        color: $primCol !important;
+        color: $googBlue !important;
     }
 }
 

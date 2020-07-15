@@ -28,8 +28,8 @@
         border-radius: 50%;
         box-shadow: 0 3px 10px rgba(#000, (22 / 100));
         font: {
-            size: 53px;
-            weight: weight(exlight);
+            size: 40px;
+            weight: weight(light);
         }
     }
 
@@ -101,6 +101,7 @@
     margin-bottom: 20px;
     input {
         @include shadow(search_bar);
+        background: $lightDark;
         width: 100%;
         height: 50px;
         border-radius: 12px;
@@ -112,6 +113,7 @@
         }
         padding-left: 30px;
         padding-right: 100px;
+        color: $searchPlaceholder;
         &::-webkit-input-placeholder {
             color: $searchPlaceholder;
         }
@@ -123,7 +125,7 @@
         border-radius: 12px;
         width: 100px;
         height: 100%;
-        background: #fff;
+        background: $lightDark;
         @include flex(center, center);
         transition: background .2s ease;
         left: 100%;
@@ -132,6 +134,7 @@
         i {
             position: absolute;
             @include flex(center,center);
+            color: $searchPlaceholder;
             border-radius: 50%;
             width: 35px;
             height: 35px;
@@ -139,7 +142,7 @@
             margin: 0 2px;
             transition: all .2s ease;
             &:hover {
-                background: $hoverbgoptions;
+                background: rgba($searchPlaceholder, 0.2);
             }
         }
 
@@ -155,7 +158,7 @@
         z-index: 5;
         width: 100px;
         height: 70px;
-        background: #fff;
+        background: $lightDark;
         box-shadow: 0 0 20px rgba(#000, 0.1);
         border-radius: 5px;
         top: 65%;
@@ -170,18 +173,21 @@
             padding-left: 10px;
             width: 100%;
             height: 50%;
+            color: #fff;
             transition: background .2s ease;
 
             &:hover {
-                background: $hoverbgcontact;
+                background: rgba($searchPlaceholder, 0.1);
             }
         }
 
         #select_pick {
             border-bottom: 1px solid $hoverbgcontact;
+            border-radius: 5px 5px 0 0;
         }
         #select_all {
             border-top: 1px solid $hoverbgcontact;
+            border-radius: 0 0 5px 5px;
         }
     }
 }

@@ -42,7 +42,7 @@ const resetModal = () => {
     });
     setStyle(fakeContactPic, 'display', 'flex');
     classAction(contactPicCont, 'remove', 'makePicBg');
-    setStyle(contactPicCont, 'background', '#1a73e8');
+    setStyle(contactPicCont, 'background', '#8AB4F8');
     saveBtn.setAttribute('disabled', '');
     classAction(saveBtn, 'add', 'btn_disabled');
 };

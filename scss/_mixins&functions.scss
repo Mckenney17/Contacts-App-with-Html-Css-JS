@@ -7,9 +7,9 @@
 
 @mixin shadow($type) {
     @if $type == 'search_bar' {
-        box-shadow: 0 0 6px rgba($blackText, $alpha: (10 / 100));
+        box-shadow: 0 0 6px rgba($lightDark, $alpha: (10 / 100));
     } @else if $type == 'contact_bar' {
-        box-shadow: 0 0 5px rgba($blackText, $alpha: (6 / 100));
+        box-shadow: 0 0 10px rgba($lightDark, $alpha: 1);
     }
 }
 

@@ -2,15 +2,20 @@ $primCol: #1a73e8;
 $fakePicCol: #fff;
 $blackText: #000;
 $addCol: #006eff;
-$searchPlaceholder: rgba(#707070, (52 / 100));
+$searchPlaceholder: #9AA0A6;
 $hoverbgcontact: rgba($blackText, (2 / 100));
 $hoverbgoptions: rgba($blackText, (6 / 100));
-$inputBorder: #e6e6e6;
+$inputBorder: #6E7175;
 $inputFilled: rgb(8, 240, 8);
+$darkTheme: #202124;
+$lightDark: #303134;
+$googBlue: #8AB4F8;
 $fontWeights: (
-    normal: 400,
-    light: 300,
+    thin: 100,
     exlight: 200,
+    light: 300,
+    normal: 400,
     medium: 500,
-    bold: 700
+    bold: 700,
+    exbold: 800
 );

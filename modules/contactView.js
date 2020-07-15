@@ -142,7 +142,9 @@ class Contact {
 
             if (!this.email) setStyle(emailHtml, 'display', 'none');
 
-            classAction(profileHtml, 'add', 'appear');
+            setTimeout(() => {
+                classAction(profileHtml, 'add', 'appear');
+            }, 0);
 
             event(goBack, 'click', () => {
                 setProp(profileHtml, 'outerHTML', '');
