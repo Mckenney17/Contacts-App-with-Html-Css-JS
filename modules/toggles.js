@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-expressions */
 import {
-    event, classAction, resetModal,
+    event, classAction, resetModal, selectorAll, selector,
 } from './functionsUI.js';
 import DOMStrings from './DOMStrings.js';
 const {
     addNewBtn, selectModal,
     optionsBtn, newContactModal, inputCont,
-    fakePlaceholder, input,
+    fakePlaceholder, input, contactDiv,
+    searchBarBtns, checkBoxes, deleteBtn,
+    allSelect, cancelOpr,
 } = DOMStrings;
 
 // Showing the New Contact adder Modal
@@ -53,6 +55,24 @@ const toggleSelectionModal = () => {
     }, 0);
 };
 
+const toggleSelection = (ev) => {
+    const action = [...ev.target.classList].includes('select') ? 'add' : 'remove';
+    const actionAlt = [...ev.target.classList].includes('select') ? 'remove' : 'add';
+    [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, action, 'anim_sel_click'));
+    setTimeout(() => {
+        [...selectorAll('.check_box')].map((el) => classAction(el, action, 'grow_box'));
+        classAction(deleteBtn, action, 'grow_font');
+        classAction(cancelOpr, action, 'grow_font');
+        if (actionAlt === 'remove') {
+            classAction(selectModal, actionAlt, 'animate_opt_cont_modal');
+            classAction(selectModal, actionAlt, 'anim_opt_click');
+        }
+        [...ev.target.classList].includes('select')
+        ? optionsBtn.removeEventListener('click', toggleSelectionModal)
+        : event(optionsBtn, 'click', toggleSelectionModal);
+    }, 0);
+};
+
 export {
- toggleNewContactModal, toggleSelectionModal, addNewBtn, optionsBtn, event,
+ toggleNewContactModal, toggleSelectionModal, toggleSelection,
 };

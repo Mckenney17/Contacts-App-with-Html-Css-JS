@@ -25,6 +25,11 @@ const DOMStrings = {
     errorMessage: selector('.error_message'),
     okBtn: selector('#ok_btn'),
     searchInput: selector('.searcher'),
+    checkBoxes: selectorAll('.check_box'),
+    deleteBtn: selector('#delete_btn'),
+    cancelOpr: selector('#cancel_opr'),
+    allSelect: selectorAll('.select'),
+    searchBarBtns: selector('.sbbtns'),
 
     contactClass: selectorAll('.contact_class'),
 };

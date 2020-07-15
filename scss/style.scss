@@ -112,7 +112,7 @@
             weight: weight(normal);
         }
         padding-left: 30px;
-        padding-right: 100px;
+        padding-right: 130px;
         color: $searchPlaceholder;
         &::-webkit-input-placeholder {
             color: $searchPlaceholder;
@@ -123,7 +123,7 @@
         position: absolute;
         font-size: larger;
         border-radius: 12px;
-        width: 100px;
+        width: 130px;
         height: 100%;
         background: $lightDark;
         @include flex(center, center);
@@ -151,6 +151,11 @@
             transform: translateX(-20px);
             font-size: 0;
         }
+
+        #cancel_opr {
+            @extend #delete_btn;
+            transform: translateX(-60px);
+        }
     }
 
     .options_cont {
@@ -161,10 +166,10 @@
         background: $lightDark;
         box-shadow: 0 0 20px rgba(#000, 0.1);
         border-radius: 5px;
-        top: 65%;
+        top: 60%;
         opacity: 0;
         display: none;
-        left: 72%;
+        left: 70%;
         transition: top .5s ease,
                     opacity .5s ease;
         

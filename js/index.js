@@ -2,7 +2,7 @@ import DOMStrings from '../modules/DOMStrings.js';
 import { event } from '../modules/functionsUI.js';
 
 import {
- toggleNewContactModal, toggleSelectionModal,
+ toggleNewContactModal, toggleSelectionModal, toggleSelection,
 } from '../modules/toggles.js';
 
 
@@ -14,12 +14,14 @@ import filterUIContacts from '../modules/searchView.js';
 import filteredContacts from '../modules/searchModel.js';
 
 const {
- addNewBtn, optionsBtn, saveBtn, searchInput,
+ addNewBtn, optionsBtn, saveBtn, searchInput, allSelect, cancelOpr,
 } = DOMStrings;
 
 
 event(addNewBtn, 'click', toggleNewContactModal);
 event(optionsBtn, 'click', toggleSelectionModal);
+[...allSelect].map((el) => event(el, 'click', toggleSelection));
+event(cancelOpr, 'click', toggleSelection);
 
 
 event(saveBtn, 'click', () => {

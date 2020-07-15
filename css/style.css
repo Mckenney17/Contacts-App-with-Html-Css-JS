@@ -425,7 +425,7 @@ html, body {
   margin-top: 15px;
 }
 
-.anim_sel_click #delete_btn {
+.anim_sel_click #delete_btn, .anim_sel_click .search_bar .sbbtns #cancel_opr, .search_bar .sbbtns .anim_sel_click #cancel_opr, .anim_sel_click #cancel_opr {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -715,7 +715,7 @@ html, body {
   font-size: 20px;
   font-weight: 400;
   padding-left: 30px;
-  padding-right: 100px;
+  padding-right: 130px;
   color: #9AA0A6;
 }
 
@@ -727,7 +727,7 @@ html, body {
   position: absolute;
   font-size: larger;
   border-radius: 12px;
-  width: 100px;
+  width: 130px;
   height: 100%;
   background: #303134;
   display: -webkit-box;
@@ -772,11 +772,16 @@ html, body {
   background: rgba(154, 160, 166, 0.2);
 }
 
-.search_bar .sbbtns #delete_btn {
+.search_bar .sbbtns #delete_btn, .search_bar .sbbtns #cancel_opr {
   display: none;
   -webkit-transform: translateX(-20px);
           transform: translateX(-20px);
   font-size: 0;
+}
+
+.search_bar .sbbtns #cancel_opr {
+  -webkit-transform: translateX(-60px);
+          transform: translateX(-60px);
 }
 
 .search_bar .options_cont {
@@ -788,10 +793,10 @@ html, body {
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  top: 65%;
+  top: 60%;
   opacity: 0;
   display: none;
-  left: 72%;
+  left: 70%;
   -webkit-transition: top .5s ease, opacity .5s ease;
   transition: top .5s ease, opacity .5s ease;
 }

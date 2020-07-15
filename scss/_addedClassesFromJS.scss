@@ -1,5 +1,5 @@
 .anim_sel_click {
-    #delete_btn {
+    #delete_btn, #cancel_opr {
         display: flex !important;
     }
 
@@ -119,4 +119,8 @@
 
 .appear {
     opacity: 1 !important;
+}
+
+.selectedForDeletion {
+
 }
