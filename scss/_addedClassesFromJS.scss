@@ -122,5 +122,13 @@
 }
 
 .selectedForDeletion {
-
+    &::after {
+        position: absolute;
+        content: '\f058';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }

@@ -85,6 +85,7 @@ html, body {
 }
 
 .contacts_div .contact_class .contacts .contact_div .check_box_div .check_box {
+  position: relative;
   opacity: 0;
   width: 0;
   height: 0;
@@ -566,6 +567,17 @@ html, body {
 
 .appear {
   opacity: 1 !important;
+}
+
+.selectedForDeletion::after {
+  position: absolute;
+  content: '\f058';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .container {
