@@ -7,7 +7,7 @@ const manipulatedDataForApp = () => {
  firstName, lastName, phoneNumber, 'E-mail': email, picUrl,
 } = contactDataByUser;
 
-    const uniqueCode = lastName ? [...lastName, ...firstName].map((ch) => ch.codePointAt().toString(16)).join('')
+    const uniqueKey = lastName ? [...lastName, ...firstName].map((ch) => ch.codePointAt().toString(16)).join('')
     : [...firstName].map((ch) => ch.codePointAt().toString(16)).join('');
 
     const contactDataForApp = {
@@ -17,10 +17,10 @@ const manipulatedDataForApp = () => {
         phoneNumber,
         email,
         picUrl,
-        uniqueCode,
+        uniqueKey,
         color: ['#fa903e', '#5bb974', '#fcc934', '#ee675c', '#4ecde6', '#af5cf7'][Math.trunc(Math.random() * 6)],
     };
-    return { contactDataForApp, uniqueCode };
+    return { contactDataForApp, uniqueKey };
 };
 
 export default manipulatedDataForApp;

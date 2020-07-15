@@ -11,7 +11,7 @@ const {
 
 class Contact {
     constructor({
-        ctClass, firstName, lastName, picUrl, color, uniqueCode, phoneNumber, email,
+        ctClass, firstName, lastName, picUrl, color, uniqueKey, phoneNumber, email,
     }) {
         this.ctClass = ctClass;
         this.firstName = firstName;
@@ -21,7 +21,7 @@ class Contact {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.name = this.lastName ? `${this.lastName} ${this.firstName}` : `${this.firstName}`;
-        this.uniqueCode = uniqueCode;
+        this.uniqueKey = uniqueKey;
 
         const listView = new Promise((resolve) => {
             if ([...selectorAll('.contact_class')].length === 0) {
@@ -55,9 +55,9 @@ class Contact {
         listView.then((contactGroupCont) => new Promise((resolve, reject) => {
             if (contactGroupCont.length === 0) {
                 insertHtml(selector(`#contacts_${this.ctClass}`), 'beforeend',
-                contactBoilerPlate(this.ctClass, this.name, this.uniqueCode));
+                contactBoilerPlate(this.ctClass, this.name, this.uniqueKey));
 
-                resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueCode}`));
+                resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueKey}`));
             } else {
                 const contactNames = [...selectorAll(`.name_${this.ctClass}`)].map((el) => el.textContent);
                 if (contactNames.includes(this.name)) {
@@ -69,20 +69,20 @@ class Contact {
 
                     if (contactNameIndex === 0) {
                         insertHtml(selector(`#contacts_${this.ctClass}`), 'afterbegin',
-                        contactBoilerPlate(this.ctClass, this.name, this.uniqueCode));
+                        contactBoilerPlate(this.ctClass, this.name, this.uniqueKey));
 
-                        resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueCode}`));
+                        resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueKey}`));
                     } else if (contactNameIndex === sortContactNames.length - 1) {
                         insertHtml(selector(`#contacts_${this.ctClass}`), 'beforeend',
-                        contactBoilerPlate(this.ctClass, this.name, this.uniqueCode));
+                        contactBoilerPlate(this.ctClass, this.name, this.uniqueKey));
 
-                        resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueCode}`));
+                        resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueKey}`));
                     } else {
                         const where = [...selectorAll(`.name_${this.ctClass}`)].find((el) => el.textContent === sortContactNames[contactNameIndex - 1]);
                         insertHtml(where.parentNode.parentNode, 'afterend',
-                        contactBoilerPlate(this.ctClass, this.name, this.uniqueCode));
+                        contactBoilerPlate(this.ctClass, this.name, this.uniqueKey));
 
-                        resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueCode}`));
+                        resolve(selector(`#fake_img_${this.ctClass}_${this.uniqueKey}`));
                     }
                 }
             }
@@ -96,7 +96,7 @@ class Contact {
             }
 
             setTimeout(() => {
-                classAction(selector(`#contact_div_${this.ctClass}_${this.uniqueCode}`), 'add', 'appear');
+                classAction(selector(`#contact_div_${this.ctClass}_${this.uniqueKey}`), 'add', 'appear');
             }, 0);
             event(contactFakeImg.parentNode.parentNode, 'click', () => { this.profileView(); });
         }).catch((err) => {

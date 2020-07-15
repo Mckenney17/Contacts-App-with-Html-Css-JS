@@ -23,8 +23,8 @@ event(optionsBtn, 'click', toggleSelectionModal);
 
 
 event(saveBtn, 'click', () => {
-    const { contactDataForApp, uniqueCode } = contactData();
-    allContacts.set(uniqueCode, new Contact(contactDataForApp));
+    const { contactDataForApp, uniqueKey } = contactData();
+    allContacts.set(uniqueKey, new Contact(contactDataForApp));
     console.log(allContacts);
 });
 
