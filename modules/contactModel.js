@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import fetchVals from './newContact.js';
 
 const manipulatedDataForApp = () => {

@@ -5,7 +5,7 @@ import {
  insertHtml, selector, selectorAll, setStyle, setProp, classAction, event,
 } from './functionsUI.js';
 const {
- contactsDiv, newContactModal, errorAlertBox, errorMessage, okBtn, container, allSelect,
+ contactsDiv, newContactModal, errorAlertBox, errorMessage, okBtn, container,
 } = DOMStrings;
 
 
@@ -99,9 +99,6 @@ class Contact {
                 classAction(selector(`#contact_div_${this.ctClass}_${this.uniqueKey}`), 'add', 'appear');
             }, 0);
             event(contactFakeImg.parentNode, 'click', () => { this.profileView(); });
-            // [...allSelect].map((el) => event(el, 'click', (ev) => {
-            //     this.deletionMode(ev);
-            // }));
         }).catch((err) => {
             setStyle(errorAlertBox, 'display', 'flex');
             setProp(errorMessage, 'textContent', err.message);

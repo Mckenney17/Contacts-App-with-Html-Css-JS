@@ -28,9 +28,7 @@ const contactProfile = (ctClass, name, phoneNumber, email) => `
 
 const contactBoilerPlate = (ctClass, name, initials) => `
 <div class="contact_div" id="contact_div_${ctClass}_${initials}">
-    <div class="check_box_div">
-        <div class='check_box' id="check_box_${ctClass}_${initials}"></div>
-    </div>
+    <div class="check_box_div"></div>
     <div class="contact" id='contact_${ctClass}_${initials}'>
         <div class="fake_img" id="fake_img_${ctClass}_${initials}">${ctClass}</div>
         <div class="name name_${ctClass}" id="name_${ctClass}_${initials}">${name}</div>

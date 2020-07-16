@@ -103,8 +103,9 @@
 
 .grow_box {
     opacity: 1 !important;
-    width: 100% !important;
-    height: 100% !important;
+    // width: 100% !important;
+    // height: 100% !important;
+    font-size: 26px !important;
 }
 
 .makePicBg {
@@ -122,13 +123,15 @@
 }
 
 .selectedForDeletion {
-    &::after {
+    &::before {
         position: absolute;
-        content: '\f058';
+        content: '\f14a';
         font-family: 'Font Awesome 5 Free';
         font-weight: 900;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        color: $primCol;
+        font-size: 27px;
     }
 }
