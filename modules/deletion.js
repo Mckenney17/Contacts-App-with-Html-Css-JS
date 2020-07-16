@@ -26,3 +26,4 @@ const deleteSelectedContacts = () => {
         }
 };
 export default deleteSelectedContacts;
+// all good

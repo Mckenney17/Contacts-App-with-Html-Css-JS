@@ -8,8 +8,7 @@ const AddPic = () => {
     fr.readAsDataURL(contactPic.files[0]);
     return new Promise((resolve) => {
         event(fr, 'load', () => {
-            setStyle(fakeContactPic, 'display', 'none');
-            setStyle(contactPicCont, 'background', `url(${fr.result})`);
+            setStyle([fakeContactPic, contactPicCont], ['display', 'background'], ['none', `url(${fr.result})`]);
             classAction(contactPicCont, 'add', 'makePicBg');
             resolve(fr.result);
         });
@@ -17,3 +16,4 @@ const AddPic = () => {
 };
 
 export default AddPic;
+// refactored

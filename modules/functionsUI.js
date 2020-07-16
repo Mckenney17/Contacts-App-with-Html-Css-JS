@@ -1,4 +1,3 @@
-// /* eslint-disable array-callback-return */
 import DOMStrings from './DOMStrings.js';
 const {
  inputCont, fakeContactPic, contactPicCont, saveBtn,
@@ -82,3 +81,4 @@ const resetModal = () => {
 export {
     selector, selectorAll, classAction, setStyle, insertHtml, setProp, event, resetModal, repeat,
 };
+// refactored

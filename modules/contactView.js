@@ -156,3 +156,4 @@ class Contact {
 }
 
 export default Contact;
+// all good

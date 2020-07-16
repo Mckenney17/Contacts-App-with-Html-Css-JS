@@ -31,3 +31,4 @@ const filterUIContacts = (filteredContacts) => {
 };
 
 export default filterUIContacts;
+// all good
