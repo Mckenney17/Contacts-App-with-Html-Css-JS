@@ -15,7 +15,11 @@ const deleteSelectedContacts = () => {
             for (const el of selected) {
                 const parent = el.parentNode.parentNode;
                 classAction(parent, 'remove', 'appear');
-                setProp(parent, 'outerHTML', '');
+                if ([...parent.parentNode.children].length < 2) {
+                    setProp(parent.parentNode.parentNode, 'outerHTML', '');
+                } else {
+                    setProp(parent, 'outerHTML', '');
+                }
             }
         }
 };

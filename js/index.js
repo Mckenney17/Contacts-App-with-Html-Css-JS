@@ -33,7 +33,6 @@ event(deleteBtn, 'click', () => {
 event(saveBtn, 'click', () => {
     const { contactDataForApp, uniqueKey } = contactData();
     allContacts.set(uniqueKey, new Contact(contactDataForApp));
-    console.log(allContacts);
 });
 
 event(searchInput, 'input', () => {

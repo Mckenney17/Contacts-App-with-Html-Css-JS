@@ -92,12 +92,6 @@ const toggleNormalMode = () => {
         classAction(cancelOpr, 'remove', 'grow_font');
         event(optionsBtn, 'click', toggleSelectionModal);
     });
-    for (const el of [...selectorAll('.contacts')]) {
-        if (!el.hasChildNodes()) {
-            console.log('hi');
-            setProp(el.parentNode, 'outerHTML', '');
-        }
-    }
 };
 
 export {
