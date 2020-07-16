@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import {
-    event, classAction, resetModal, selectorAll, selector, insertHtml, setProp,
+    event, classAction, resetModal, selectorAll, repeat, insertHtml, setProp,
 } from './functionsUI.js';
 import DOMStrings from './DOMStrings.js';
 const {
@@ -14,8 +14,7 @@ const {
 const toggleNewContactModal = () => {
     classAction(newContactModal, 'toggle', 'modal_disp');
     setTimeout(() => {
-        classAction(newContactModal, 'toggle', 'animate_modal');
-        classAction(addNewBtn, 'toggle', 'animate_add_btn');
+        classAction([newContactModal, addNewBtn], repeat('toggle', 2), ['animate_modal', 'animate_add_btn']);
     }, 0);
     [...input].map((el) => event(el, 'focus', inputPlaceholderAnim));
     [...fakePlaceholder].map((el) => event(el, 'click', inputPlaceholderAnim));
@@ -28,11 +27,9 @@ const inputPlaceholderAnim = (ev) => {
         if (el.children[0].value !== '') {
             classAction(el, 'add', 'input_filled');
             if (ev.type === 'focus' && ev.target.id === el.children[0].id) {
-                classAction(el, 'remove', 'input_filled');
-                classAction(el, 'add', 'input_focused');
+                classAction(repeat(el, 2), ['remove', 'add'], ['input_filled', 'input_focused']);
             } else {
-                classAction(el, 'add', 'input_filled');
-                classAction(el, 'remove', 'input_focused');
+                classAction(repeat(el, 2), ['add', 'remove'], ['input_filled', 'input_focused']);
             }
         } else {
             classAction(el, 'remove', 'animate_input', 'input_filled', 'input_focused', 'error_alert');
@@ -51,7 +48,7 @@ const toggleSelectionModal = () => {
     }, 0);
 };
 
-const toggleDeletionMode = (ev) => {
+const activateDeletionMode = (ev) => {
     const contact = [...selectorAll('.contact')];
     if (contact.length === 0) return;
         const p = new Promise((resolve) => {
@@ -63,37 +60,40 @@ const toggleDeletionMode = (ev) => {
             }
         });
         [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, 'add', 'anim_sel_click'));
-        classAction(deleteBtn, 'add', 'grow_font');
-        classAction(cancelOpr, 'add', 'grow_font');
-        classAction(selectModal, 'remove', 'animate_opt_cont_modal');
-        classAction(selectModal, 'remove', 'anim_opt_click');
+        classAction([deleteBtn, cancelOpr], repeat('add', 2), repeat('grow_font', 2));
+        classAction(selectModal, 'remove', 'animate_opt_cont_modal', 'anim_opt_click');
         optionsBtn.removeEventListener('click', toggleSelectionModal);
         p.then(() => {
             [...selectorAll('.check_box')].map((el) => classAction(el, 'add', 'grow_box'));
             if (ev.target.id === 'select_pick') {
-                [...selectorAll('.check_box')].map((el) => classAction(el, 'remove', 'selectedForDeletion'));
-                [...selectorAll('.check_box')].map((el) => event(el, 'click', () => {
-                    classAction(el, 'toggle', 'selectedForDeletion');
-                }));
+                for (const el of [...selectorAll('.check_box')]) {
+                    classAction(el, 'remove', 'selectedForDeletion');
+                    event(el, 'click', () => {
+                        classAction(el, 'toggle', 'selectedForDeletion');
+                    });
+                }
             } else {
-                [...selectorAll('.check_box')].map((el) => classAction(el, 'add', 'selectedForDeletion'));
-                [...selectorAll('.check_box')].map((el) => event(el, 'click', () => {
-                    classAction(el, 'toggle', 'selectedForDeletion');
-                }));
+                for (const el of [...selectorAll('.check_box')]) {
+                    classAction(el, 'add', 'selectedForDeletion');
+                    event(el, 'click', () => {
+                        classAction(el, 'toggle', 'selectedForDeletion');
+                    });
+                }
             }
         });
 };
 
-const toggleNormalMode = () => {
+const deactivateDeletionMode = () => {
     [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, 'remove', 'anim_sel_click'));
     setTimeout(() => {
         [...selectorAll('.check_box')].map((el) => setProp(el, 'outerHTML', ''));
-        classAction(deleteBtn, 'remove', 'grow_font');
-        classAction(cancelOpr, 'remove', 'grow_font');
+        classAction([deleteBtn, cancelOpr], repeat('remove', 2), repeat('grow_font', 2));
         event(optionsBtn, 'click', toggleSelectionModal);
     });
 };
 
 export {
- toggleNewContactModal, toggleSelectionModal, toggleDeletionMode, toggleNormalMode,
+ toggleNewContactModal, toggleSelectionModal, activateDeletionMode, deactivateDeletionMode,
 };
+
+// refactored

@@ -2,7 +2,7 @@ import DOMStrings from '../modules/DOMStrings.js';
 import { event } from '../modules/functionsUI.js';
 
 import {
- toggleNewContactModal, toggleSelectionModal, toggleDeletionMode, toggleNormalMode,
+ toggleNewContactModal, toggleSelectionModal, activateDeletionMode, deactivateDeletionMode,
 } from '../modules/toggles.js';
 
 
@@ -22,11 +22,11 @@ const {
 
 event(addNewBtn, 'click', toggleNewContactModal);
 event(optionsBtn, 'click', toggleSelectionModal);
-[...allSelect].map((el) => event(el, 'click', toggleDeletionMode));
-event(cancelOpr, 'click', toggleNormalMode);
+[...allSelect].map((el) => event(el, 'click', activateDeletionMode));
+event(cancelOpr, 'click', deactivateDeletionMode);
 event(deleteBtn, 'click', () => {
     deleteSelected();
-    toggleNormalMode();
+    deactivateDeletionMode();
 });
 
 

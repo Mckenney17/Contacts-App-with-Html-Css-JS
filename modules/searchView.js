@@ -20,11 +20,12 @@ const filterUIContacts = (filteredContacts) => {
     [...selectorAll('.contact_class')].map((el) => setStyle(el, 'display', 'flex'));
 
     for (const el of filteredContacts) {
-        setStyle(el, 'display', 'none');
         classAction(el, 'remove', 'appear');
-
-        if ([...el.parentNode.children].every((ch) => ch.style.display === 'none')) {
+        const howManyRemains = [...el.parentNode.children].filter((ch) => ch.style.display !== 'none').length;
+        if (howManyRemains < 2) {
             setStyle(el.parentNode.parentNode, 'display', 'none');
+        } else {
+            setStyle(el, 'display', 'none');
         }
     }
 };
