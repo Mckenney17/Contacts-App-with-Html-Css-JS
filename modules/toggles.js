@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import {
-    event, classAction, resetModal, selectorAll, repeat, insertHtml, setProp,
+    event, classAction, resetModal, selectorAll, classActionMulti, insertHtml, setProp,
 } from './functionsUI.js';
 import DOMStrings from './DOMStrings.js';
 const {
@@ -14,7 +14,18 @@ const {
 const toggleNewContactModal = () => {
     classAction(newContactModal, 'toggle', 'modal_disp');
     setTimeout(() => {
-        classAction([newContactModal, addNewBtn], repeat('toggle', 2), ['animate_modal', 'animate_add_btn']);
+        classActionMulti([
+            {
+                elem: newContactModal,
+                action: 'toggle',
+                classes: ['animate_modal'],
+            },
+            {
+                elem: addNewBtn,
+                action: 'toggle',
+                classes: ['animate_add_btn'],
+            },
+        ]);
     }, 0);
     [...input].map((el) => event(el, 'focus', inputPlaceholderAnim));
     [...fakePlaceholder].map((el) => event(el, 'click', inputPlaceholderAnim));
@@ -27,9 +38,31 @@ const inputPlaceholderAnim = (ev) => {
         if (el.children[0].value !== '') {
             classAction(el, 'add', 'input_filled');
             if (ev.type === 'focus' && ev.target.id === el.children[0].id) {
-                classAction(repeat(el, 2), ['remove', 'add'], ['input_filled', 'input_focused']);
+                classActionMulti([
+                    {
+                        elem: el,
+                        action: 'remove',
+                        classes: ['input_filled'],
+                    },
+                    {
+                        elem: el,
+                        action: 'add',
+                        classes: ['input_focused'],
+                    },
+                ]);
             } else {
-                classAction(repeat(el, 2), ['add', 'remove'], ['input_filled', 'input_focused']);
+                classActionMulti([
+                    {
+                        elem: el,
+                        action: 'add',
+                        classes: ['input_filled'],
+                    },
+                    {
+                        elem: el,
+                        action: 'remove',
+                        classes: ['input_focused'],
+                    },
+                ]);
             }
         } else {
             classAction(el, 'remove', 'animate_input', 'input_filled', 'input_focused', 'error_alert');
@@ -60,8 +93,23 @@ const activateDeletionMode = (ev) => {
             }
         });
         [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, 'add', 'anim_sel_click'));
-        classAction([deleteBtn, cancelOpr], repeat('add', 2), repeat('grow_font', 2));
-        classAction(selectModal, 'remove', 'animate_opt_cont_modal', 'anim_opt_click');
+        classActionMulti([
+            {
+                elem: deleteBtn,
+                action: 'add',
+                classes: ['grow_font'],
+            },
+            {
+                elem: cancelOpr,
+                action: 'add',
+                classes: ['grow_font'],
+            },
+            {
+                elem: selectModal,
+                action: 'remove',
+                classes: ['animate_opt_cont_modal', 'anim_opt_click'],
+            },
+        ]);
         optionsBtn.removeEventListener('click', toggleSelectionModal);
         p.then(() => {
             [...selectorAll('.check_box')].map((el) => classAction(el, 'add', 'grow_box'));
@@ -87,7 +135,18 @@ const deactivateDeletionMode = () => {
     [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, 'remove', 'anim_sel_click'));
     setTimeout(() => {
         [...selectorAll('.check_box')].map((el) => setProp(el, 'outerHTML', ''));
-        classAction([deleteBtn, cancelOpr], repeat('remove', 2), repeat('grow_font', 2));
+        classActionMulti([
+            {
+                elem: deleteBtn,
+                action: 'remove',
+                value: 'grow_font',
+            },
+            {
+                elem: cancelOpr,
+                action: 'remove',
+                value: 'grow_font',
+            },
+        ]);
         event(optionsBtn, 'click', toggleSelectionModal);
     });
 };

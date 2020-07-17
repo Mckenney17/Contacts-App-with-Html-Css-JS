@@ -98,7 +98,9 @@ class Contact {
             setTimeout(() => {
                 classAction(selector(`#contact_div_${this.ctClass}_${this.uniqueKey}`), 'add', 'appear');
             }, 0);
-            event(contactFakeImg.parentNode, 'click', () => { this.profileView(); });
+            event(contactFakeImg.parentNode, 'click', () => {
+                this.profileView();
+            });
         }).catch((err) => {
             setStyle(errorAlertBox, 'display', 'flex');
             setProp(errorMessage, 'textContent', err.message);

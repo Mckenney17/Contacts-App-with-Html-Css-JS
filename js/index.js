@@ -1,5 +1,5 @@
 import DOMStrings from '../modules/DOMStrings.js';
-import { event, repeat } from '../modules/functionsUI.js';
+import { event, eventMulti } from '../modules/functionsUI.js';
 
 import {
  toggleNewContactModal, toggleSelectionModal, activateDeletionMode, deactivateDeletionMode,
@@ -21,22 +21,44 @@ const {
 
 [...allSelect].map((el) => event(el, 'click', activateDeletionMode));
 
-event([addNewBtn, optionsBtn, cancelOpr, deleteBtn, saveBtn, searchInput], [...repeat('click', 5), 'input'],
-[
-    toggleNewContactModal,
-    toggleSelectionModal,
-    deactivateDeletionMode,
-    () => {
-        deleteSelected();
-        deactivateDeletionMode();
+eventMulti([
+    {
+        elem: addNewBtn,
+        type: 'click',
+        callback: toggleNewContactModal,
     },
-    () => {
-        const { contactDataForApp, uniqueKey } = contactData();
-        allContacts.set(uniqueKey, new Contact(contactDataForApp));
+    {
+        elem: optionsBtn,
+        type: 'click',
+        callback: toggleSelectionModal,
     },
-    () => {
-        filterUIContacts(filteredContacts());
+    {
+        elem: cancelOpr,
+        type: 'click',
+        callback: deactivateDeletionMode,
+    },
+    {
+        elem: deleteBtn,
+        type: 'click',
+        callback() {
+            deleteSelected();
+            deactivateDeletionMode();
+        },
+    },
+    {
+        elem: saveBtn,
+        type: 'click',
+        callback() {
+            const { contactDataForApp, uniqueKey } = contactData();
+            allContacts.set(uniqueKey, new Contact(contactDataForApp));
+        },
+    },
+    {
+        elem: searchInput,
+        type: 'input',
+        callback() {
+            filterUIContacts(filteredContacts());
+        },
     },
 ]);
-
-// powerful refactoring, couldn't believe it
+// refactored

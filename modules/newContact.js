@@ -1,7 +1,7 @@
 // Get input values and check for errors
 import DOMStrings from './DOMStrings.js';
 import {
-    classAction, event, resetModal, repeat,
+    classAction, event, resetModal, classActionMulti,
 } from './functionsUI.js';
 import Addpic from './contactPicUpload.js';
 const {
@@ -91,7 +91,23 @@ const fetchVals = () => {
         picUrl,
     };
     resetModal();
-    classAction([...repeat(newContactModal, 2), addNewBtn], repeat('toggle', 3), ['modal_disp', 'animate_modal', 'animate_add_btn']);
+    classActionMulti([
+        {
+            elem: newContactModal,
+            action: 'toggle',
+            classes: ['modal_disp'],
+        },
+        {
+            elem: newContactModal,
+            action: 'toggle',
+            classes: ['animate_modal'],
+        },
+        {
+            elem: addNewBtn,
+            action: 'toggle',
+            classes: ['animate_add_btn'],
+        },
+    ]);
     return res;
 };
 

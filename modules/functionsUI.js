@@ -14,29 +14,24 @@ const repeat = (value, times) => {
     return arr;
 };
 
-const classAction = (el, action, ...classValue) => {
-    if (Array.isArray(el)) {
-        if (!el) return;
-        const subArray = classValue.flat();
-        el.forEach((v, i) => {
-            v.classList[action[i]](subArray[i]);
-        });
-    } else {
-        if (!el) return;
-        el.classList[action](...classValue);
+const classAction = (elem, action, ...classes) => {
+    elem.classList[action](...classes);
+};
+
+const classActionMulti = (objs) => {
+    for (const { elem, action, classes } of objs) {
+        elem.classList[action](...classes);
     }
 };
 
-const setStyle = (el, prop, value) => {
-    if (Array.isArray(el)) {
-        if (!el) return;
-        el.forEach((v, i) => {
-            v.style[prop[i]] = value[i];
-        });
-    } else {
-        if (!el) return;
-        el.style[prop] = value;
+const setStyleMulti = (objs) => {
+    for (const { elem, prop, value } of objs) {
+        elem.style[prop] = value;
     }
+};
+
+const setStyle = (elem, prop, value) => {
+    elem.style[prop] = value;
 };
 
 const insertHtml = (elem, where, html) => {
@@ -44,28 +39,24 @@ const insertHtml = (elem, where, html) => {
     elem.insertAdjacentHTML(where, html);
 };
 
-const setProp = (elem, prop, value) => {
-    if (Array.isArray(elem)) {
-        if (!elem) return;
-        elem.forEach((v, i) => {
-            v[prop[i]] = value[i];
-        });
-    } else {
-        if (!elem) return;
+const setPropMulti = (objs) => {
+    for (const { elem, prop, value } of objs) {
         elem[prop] = value;
     }
 };
 
-const event = (elem, action, callback) => {
-    if (Array.isArray(elem)) {
-        if (!elem) return;
-        elem.forEach((v, i) => {
-            v.addEventListener(action[i], callback[i]);
-        });
-    } else {
-        if (!elem) return;
-        elem.addEventListener(action, callback);
+const setProp = (elem, prop, value) => {
+    elem[prop] = value;
+};
+
+const eventMulti = (objs) => {
+    for (const { elem, type, callback } of objs) {
+        elem.addEventListener(type, callback);
     }
+};
+
+const event = (elem, type, callback) => {
+    elem.addEventListener(type, callback);
 };
 
 const resetModal = () => {
@@ -73,12 +64,36 @@ const resetModal = () => {
         setProp(el.children[0], 'value', '');
         classAction(el, 'remove', 'animate_input', 'input_filled', 'input_focused', 'error_alert');
     }
-    setStyle([fakeContactPic, contactPicCont], ['display', 'background'], ['flex', '#8AB4F8']);
-    classAction([contactPicCont, saveBtn], ['remove', 'add'], ['makePicBg', 'btn_disabled']);
+    setStyleMulti([
+        {
+            elem: fakeContactPic,
+            prop: 'display',
+            value: 'flex',
+        },
+        {
+            elem: contactPicCont,
+            prop: 'background',
+            value: '#8AB4F8',
+        },
+    ]);
+    classActionMulti([
+        {
+            elem: contactPicCont,
+            action: 'remove',
+            classes: ['makePicBg'],
+        },
+        {
+            elem: saveBtn,
+            action: 'add',
+            classes: ['btn_disabled'],
+        },
+    ]);
     saveBtn.setAttribute('disabled', '');
 };
 
 export {
-    selector, selectorAll, classAction, setStyle, insertHtml, setProp, event, resetModal, repeat,
+    selector, selectorAll, classAction, setStyle, insertHtml,
+    setProp, event, resetModal, classActionMulti, setStyleMulti,
+    setPropMulti, eventMulti,
 };
 // refactored
