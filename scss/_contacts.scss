@@ -8,11 +8,17 @@
 
     &::-webkit-scrollbar {
         width: 3px;
-        // position: absolute;
     }
     &::-webkit-scrollbar-thumb {
         background: $primCol;
         border-radius: 20px 0 0 20px;
+    }
+
+    .no-matching-contacts {
+        text-align: center;
+        font-size: 25px;
+        font-weight: weight(medium);
+        color: $searchPlaceholder;
     }
 
     .contact_class {

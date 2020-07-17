@@ -48,6 +48,13 @@ html, body {
   border-radius: 20px 0 0 20px;
 }
 
+.contacts_div .no-matching-contacts {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+  color: #9AA0A6;
+}
+
 .contacts_div .contact_class {
   width: 100%;
   display: -webkit-box;
