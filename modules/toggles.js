@@ -139,12 +139,12 @@ const deactivateDeletionMode = () => {
             {
                 elem: deleteBtn,
                 action: 'remove',
-                value: 'grow_font',
+                classes: ['grow_font'],
             },
             {
                 elem: cancelOpr,
                 action: 'remove',
-                value: 'grow_font',
+                classes: ['grow_font'],
             },
         ]);
         event(optionsBtn, 'click', toggleSelectionModal);
