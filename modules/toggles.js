@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-expressions */
 import {
-    event, classAction, resetModal, selectorAll, classActionMulti, insertHtml, setProp,
+    event, classAction, resetModal, selectorAll, classActionMulti, insertHtml, setProp, setStyle,
 } from './functionsUI.js';
 import DOMStrings from './DOMStrings.js';
 const {
@@ -84,55 +83,57 @@ const toggleSelectionModal = () => {
 const activateDeletionMode = (ev) => {
     const contact = [...selectorAll('.contact')];
     if (contact.length === 0) return;
-        const p = new Promise((resolve) => {
-            for (const el of contact) {
-                const grabKey = el.id.slice(el.id.lastIndexOf('_') + 1);
-                const grabClass = el.id.charAt(el.id.lastIndexOf('_') - 1);
-                insertHtml(el.previousElementSibling, 'beforeend', `<i class='far fa-square check_box' id="check_box_${grabClass}_${grabKey}"></i>`);
-                resolve();
+    const p = new Promise((resolve) => {
+        for (const el of contact) {
+            const grabKey = el.id.slice(el.id.lastIndexOf('_') + 1);
+            const grabClass = el.id.charAt(el.id.lastIndexOf('_') - 1);
+            insertHtml(el.previousElementSibling, 'beforeend', `<i class='far fa-square check_box' id="check_box_${grabClass}_${grabKey}"></i>`);
+            resolve();
+        }
+    });
+    [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, 'add', 'anim_sel_click'));
+    setStyle(addNewBtn, 'display', 'none');
+    classActionMulti([
+        {
+            elem: deleteBtn,
+            action: 'add',
+            classes: ['grow_font'],
+        },
+        {
+            elem: cancelOpr,
+            action: 'add',
+            classes: ['grow_font'],
+        },
+        {
+            elem: selectModal,
+            action: 'remove',
+            classes: ['animate_opt_cont_modal', 'anim_opt_click'],
+        },
+    ]);
+    optionsBtn.removeEventListener('click', toggleSelectionModal);
+    p.then(() => {
+        [...selectorAll('.check_box')].map((el) => classAction(el, 'add', 'grow_box'));
+        if (ev.target.id === 'select_pick') {
+            for (const el of [...selectorAll('.check_box')]) {
+                classAction(el, 'remove', 'selectedForDeletion');
+                event(el, 'click', () => {
+                    classAction(el, 'toggle', 'selectedForDeletion');
+                });
             }
-        });
-        [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, 'add', 'anim_sel_click'));
-        classActionMulti([
-            {
-                elem: deleteBtn,
-                action: 'add',
-                classes: ['grow_font'],
-            },
-            {
-                elem: cancelOpr,
-                action: 'add',
-                classes: ['grow_font'],
-            },
-            {
-                elem: selectModal,
-                action: 'remove',
-                classes: ['animate_opt_cont_modal', 'anim_opt_click'],
-            },
-        ]);
-        optionsBtn.removeEventListener('click', toggleSelectionModal);
-        p.then(() => {
-            [...selectorAll('.check_box')].map((el) => classAction(el, 'add', 'grow_box'));
-            if (ev.target.id === 'select_pick') {
-                for (const el of [...selectorAll('.check_box')]) {
-                    classAction(el, 'remove', 'selectedForDeletion');
-                    event(el, 'click', () => {
-                        classAction(el, 'toggle', 'selectedForDeletion');
-                    });
-                }
-            } else {
-                for (const el of [...selectorAll('.check_box')]) {
-                    classAction(el, 'add', 'selectedForDeletion');
-                    event(el, 'click', () => {
-                        classAction(el, 'toggle', 'selectedForDeletion');
-                    });
-                }
+        } else {
+            for (const el of [...selectorAll('.check_box')]) {
+                classAction(el, 'add', 'selectedForDeletion');
+                event(el, 'click', () => {
+                    classAction(el, 'toggle', 'selectedForDeletion');
+                });
             }
-        });
+        }
+    });
 };
 
 const deactivateDeletionMode = () => {
     [...selectorAll('.contact_div'), searchBarBtns].map((el) => classAction(el, 'remove', 'anim_sel_click'));
+    setStyle(addNewBtn, 'display', 'flex');
     setTimeout(() => {
         [...selectorAll('.check_box')].map((el) => setProp(el, 'outerHTML', ''));
         classActionMulti([

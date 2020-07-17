@@ -15,6 +15,7 @@ const repeat = (value, times) => {
 };
 
 const classAction = (elem, action, ...classes) => {
+    if (!elem) return;
     elem.classList[action](...classes);
 };
 

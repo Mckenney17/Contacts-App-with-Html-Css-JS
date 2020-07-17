@@ -13,8 +13,6 @@
     padding: 0 15px;
     position: relative;
 
-
-
     .add_new_contact_btn {
         position: absolute;
         @include flex(center, center);
@@ -30,6 +28,35 @@
         font: {
             size: 40px;
             weight: weight(light);
+        }
+    }
+
+    .no-contact-message {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include flex(center, center, column);
+        font-size: 27px;
+        font-weight: weight(bold);
+        color: $lightDark;
+
+        #action {
+            @include flex(space-between, center);
+            width: 320px;
+            #addnew-btn {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: $lightDark;
+                color: $darkTheme;
+                @include flex(center, center);
+                font: {
+                    size: 40px;
+                    weight: weight(light);
+                }
+            }
         }
     }
 

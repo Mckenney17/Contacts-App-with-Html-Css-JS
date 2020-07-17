@@ -33,6 +33,19 @@ html, body {
 .contacts_div {
   margin: 0 auto;
   width: 97%;
+  height: 500px;
+  padding-top: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.contacts_div::-webkit-scrollbar {
+  width: 3px;
+}
+
+.contacts_div::-webkit-scrollbar-thumb {
+  background: #1a73e8;
+  border-radius: 20px 0 0 20px;
 }
 
 .contacts_div .contact_class {
@@ -43,7 +56,7 @@ html, body {
 }
 
 .contacts_div .contact_class .alpha_label {
-  width: 5%;
+  width: 4%;
   font-weight: 800;
   color: #8AB4F8;
 }
@@ -105,8 +118,8 @@ html, body {
   transition: -webkit-transform .2s ease-out;
   transition: transform .2s ease-out;
   transition: transform .2s ease-out, -webkit-transform .2s ease-out;
-  -webkit-box-shadow: 0 0 10px #303134;
-          box-shadow: 0 0 10px #303134;
+  -webkit-box-shadow: 0 0 7px #303134;
+          box-shadow: 0 0 7px #303134;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,6 +131,7 @@ html, body {
           justify-content: flex-start;
   width: 100%;
   height: 50px;
+  margin-bottom: 3px;
   border-radius: 10px;
 }
 
@@ -163,6 +177,7 @@ html, body {
   background: #202124;
   bottom: 20%;
   opacity: 0;
+  z-index: 50;
   display: none;
   height: 450px;
   border-radius: 10px;
@@ -550,8 +565,8 @@ html, body {
 }
 
 .anim_sel_click .contact {
-  -webkit-transform: translateX(35px);
-          transform: translateX(35px);
+  -webkit-transform: translateX(30px);
+          transform: translateX(30px);
 }
 
 .grow_box {
@@ -617,6 +632,63 @@ html, body {
   border-radius: 50%;
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+  font-size: 40px;
+  font-weight: 300;
+}
+
+.container .no-contact-message {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 27px;
+  font-weight: 700;
+  color: #303134;
+}
+
+.container .no-contact-message #action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 320px;
+}
+
+.container .no-contact-message #action #addnew-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #303134;
+  color: #202124;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-size: 40px;
   font-weight: 300;
 }

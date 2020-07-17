@@ -5,7 +5,7 @@ import {
  insertHtml, selector, selectorAll, setStyle, setProp, classAction, event,
 } from './functionsUI.js';
 const {
- contactsDiv, newContactModal, errorAlertBox, errorMessage, okBtn, container,
+ contactsDiv, newContactModal, errorAlertBox, errorMessage, okBtn, container, noContactMessage,
 } = DOMStrings;
 
 
@@ -25,6 +25,7 @@ class Contact {
 
         const listView = new Promise((resolve) => {
             if ([...selectorAll('.contact_class')].length === 0) {
+                setStyle(noContactMessage, 'display', 'none');
                 insertHtml(newContactModal, 'beforebegin', contactGroupBoilerplate(this.ctClass));
                 resolve([...selectorAll(`#contacts_${this.ctClass} .contact_div`)]);
             } else {
@@ -99,7 +100,12 @@ class Contact {
                 classAction(selector(`#contact_div_${this.ctClass}_${this.uniqueKey}`), 'add', 'appear');
             }, 0);
             event(contactFakeImg.parentNode, 'click', () => {
-                this.profileView();
+                const checkBoxDiv = contactFakeImg.parentNode.previousElementSibling;
+                if (checkBoxDiv.firstElementChild) {
+                    classAction(checkBoxDiv.firstElementChild, 'toggle', 'selectedForDeletion');
+                } else {
+                    this.profileView();
+                }
             });
         }).catch((err) => {
             setStyle(errorAlertBox, 'display', 'flex');

@@ -9,7 +9,7 @@
     @if $type == 'search_bar' {
         box-shadow: 0 0 6px rgba($lightDark, $alpha: (10 / 100));
     } @else if $type == 'contact_bar' {
-        box-shadow: 0 0 10px rgba($lightDark, $alpha: 1);
+        box-shadow: 0 0 7px rgba($lightDark, $alpha: 1);
     }
 }
 

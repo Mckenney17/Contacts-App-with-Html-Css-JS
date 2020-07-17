@@ -1,7 +1,9 @@
 import {
-    selectorAll, classAction, setProp,
+    selectorAll, classAction, setProp, setStyle,
 } from './functionsUI.js';
 import allContacts from './allContacts.js';
+import DOMStrings from './DOMStrings.js';
+const { noContactMessage } = DOMStrings;
 
 const deleteSelectedContacts = () => {
         const selected = [...selectorAll('.selectedForDeletion')];
@@ -18,6 +20,9 @@ const deleteSelectedContacts = () => {
                 setTimeout(() => {
                     if ([...parent.parentNode.children].length < 2) {
                         setProp(parent.parentNode.parentNode, 'outerHTML', '');
+                        if ([...selectorAll('.contact_class')].length === 0) {
+                            setStyle(noContactMessage, 'display', 'flex');
+                        }
                     } else {
                         setProp(parent, 'outerHTML', '');
                     }

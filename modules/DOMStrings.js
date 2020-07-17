@@ -30,6 +30,7 @@ const DOMStrings = {
     cancelOpr: selector('#cancel_opr'),
     allSelect: selectorAll('.select'),
     searchBarBtns: selector('.sbbtns'),
+    noContactMessage: selector('.no-contact-message'),
 
     contactClass: selectorAll('.contact_class'),
 };
