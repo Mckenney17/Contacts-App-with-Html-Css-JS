@@ -19,6 +19,7 @@ html, body {
       -ms-flex-pack: center;
           justify-content: center;
   background: #202124;
+  overflow: hidden;
 }
 
 .contact:hover {
@@ -708,7 +709,7 @@ html, body {
           transform: translate(-50%, -50%);
   width: 300px;
   border-radius: 10px;
-  z-index: 10;
+  z-index: 50;
   -webkit-box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -722,7 +723,6 @@ html, body {
       -ms-flex-direction: column;
           flex-direction: column;
   display: none;
-  opacity: 0;
 }
 
 .container .error_alert_box .sign_msg_div {
@@ -896,6 +896,18 @@ html, body {
   left: 70%;
   -webkit-transition: top .5s ease, opacity .5s ease;
   transition: top .5s ease, opacity .5s ease;
+}
+
+.search_bar .options_cont .dummybg {
+  content: '';
+  position: absolute;
+  top: -100vh;
+  left: -100vw;
+  right: -100vw;
+  bottom: -100vh;
+  background: red;
+  z-index: -1;
+  opacity: 0;
 }
 
 .search_bar .options_cont .select {

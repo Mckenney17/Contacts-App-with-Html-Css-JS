@@ -16,7 +16,7 @@ import filteredContacts from '../modules/searchModel.js';
 import deleteSelected from '../modules/deletion.js';
 
 const {
- addNewBtn, optionsBtn, saveBtn, searchInput, allSelect, cancelOpr, deleteBtn,
+ addNewBtn, optionsBtn, saveBtn, searchInput, allSelect, cancelOpr, deleteBtn, dummyBg,
 } = DOMStrings;
 
 [...allSelect].map((el) => event(el, 'click', activateDeletionMode));
@@ -29,6 +29,11 @@ eventMulti([
     },
     {
         elem: optionsBtn,
+        type: 'click',
+        callback: toggleSelectionModal,
+    },
+    {
+        elem: dummyBg,
         type: 'click',
         callback: toggleSelectionModal,
     },

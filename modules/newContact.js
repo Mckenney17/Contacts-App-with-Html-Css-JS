@@ -20,7 +20,16 @@ const checkEmpty = (param) => {
 };
 
 const checkWrongMailInput = (param) => {
-    if (param.value.length > 0 && !param.value.match(/@(?=\w+\.)/)) {
+    if (param.value.length > 0 && !param.value.match(/\w+@\w+\.+\w+/)) {
+        classAction(param.parentNode, 'add', 'error_alert');
+        return false;
+    }
+    classAction(param.parentNode, 'remove', 'error_alert');
+    return true;
+};
+
+const checkWrongFirstnameInput = (param) => {
+    if (param.value.length > 0 && !param.value.match(/\w+@\w+\.+\w+/)) {
         classAction(param.parentNode, 'add', 'error_alert');
         return false;
     }

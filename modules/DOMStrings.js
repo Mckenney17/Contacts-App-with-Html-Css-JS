@@ -31,6 +31,7 @@ const DOMStrings = {
     allSelect: selectorAll('.select'),
     searchBarBtns: selector('.sbbtns'),
     noContactMessage: selector('.no-contact-message'),
+    dummyBg: selector('.dummybg'),
 
     contactClass: selectorAll('.contact_class'),
 };
