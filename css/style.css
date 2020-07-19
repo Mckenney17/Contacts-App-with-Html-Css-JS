@@ -350,31 +350,42 @@ html, body {
 
 .contact_profile .top_section .back_button, .contact_profile .top_section .edit_button {
   position: absolute;
-  -webkit-transition: color .2s ease;
-  transition: color .2s ease;
+  -webkit-transition: background .2s ease;
+  transition: background .2s ease;
+  color: #000;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 35px;
+  height: 35px;
 }
 
 .contact_profile .top_section .back_button:hover, .contact_profile .top_section .edit_button:hover {
-  color: #fff;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .contact_profile .top_section .back_button {
   top: 5%;
   left: 3%;
-  color: #000;
 }
 
 .contact_profile .top_section .edit_button {
   top: 5%;
   right: 3%;
-  color: #000;
 }
 
 .contact_profile .top_section .name {
   position: absolute;
   bottom: 5%;
   left: 3%;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 25px;
 }
 

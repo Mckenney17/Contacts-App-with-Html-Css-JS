@@ -16,25 +16,29 @@
             }
             text-align: center;
         }
+
     
         .back_button, .edit_button {
             position: absolute;
-            transition: color .2s ease;
+            transition: background .2s ease;
+            color: #000;
+            border-radius: 50%;
+            @include flex(center, center);
+            width: 35px;
+            height: 35px;
             &:hover {
-                color: #fff;
+                background: rgba(#000, 0.2);
             }
         }
     
         .back_button {
             top: 5%;
             left: 3%;
-            color: #000;
         }
 
         .edit_button {
             top: 5%;
             right: 3%;
-            color: #000;
         }
     
         .name {
@@ -42,7 +46,7 @@
             bottom: 5%;
             left: 3%;
             font: {
-                weight: weight(light);
+                weight: weight(medium);
                 size: 25px;
             }
         }
