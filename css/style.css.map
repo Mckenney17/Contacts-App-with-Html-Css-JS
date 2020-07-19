@@ -8,7 +8,7 @@
         "../scss/_defaults.scss",
         "../scss/_contacts.scss",
         "../scss/_newContactModal.scss",
-        "../scss/_contactDetails.scss",
+        "../scss/_contactProfile.scss",
         "../scss/_addedClassesFromJS.scss"
     ],
     "names": [],
