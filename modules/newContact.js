@@ -20,7 +20,7 @@ const checkEmpty = (param) => {
 };
 
 const checkWrongMailInput = (param) => {
-    if (param.value.length > 0 && !param.value.match(/\w+@\w+\.+\w+/)) {
+    if (param.value.length > 0 && !param.value.match(/^[A-Za-z0-9]([A-Za-z0-9_]|(?<![._])\.(?![._]))*(?<![._])@([A-Za-z0-9_]+((?<![._])\.(?![._])))+[A-Za-z0-9]+$/)) {
         classAction(param.parentNode, 'add', 'error_alert');
         return false;
     }
@@ -29,7 +29,16 @@ const checkWrongMailInput = (param) => {
 };
 
 const checkWrongFirstnameInput = (param) => {
-    if (param.value.length > 0 && !param.value.match(/\w+@\w+\.+\w+/)) {
+    if (param.value.length > 0 && param.value.match(/\W+/)) {
+        classAction(param.parentNode, 'add', 'error_alert');
+        return false;
+    }
+    classAction(param.parentNode, 'remove', 'error_alert');
+    return true;
+};
+
+const checkWrongLastnameInput = (param) => {
+    if (param.value.length > 0 && param.value.match(/\W+/)) {
         classAction(param.parentNode, 'add', 'error_alert');
         return false;
     }
@@ -38,14 +47,7 @@ const checkWrongFirstnameInput = (param) => {
 };
 
 const checkWrongPhoneInput = (param) => {
-    if (param.value.startsWith('+')) {
-        const x = param.value.slice('+');
-        if (param.value.length > 1 && !Number(x)) {
-            classAction(param.parentNode, 'add', 'error_alert');
-            return false;
-        }
-        classAction(param.parentNode, 'remove', 'error_alert');
-    } else if (param.value.match(/\D/)) {
+    if (param.value.length > 0 && param.value.match(/[^+\d+]+|([+\d+][A-Za-z_\W]+)/)) {
         classAction(param.parentNode, 'add', 'error_alert');
         return false;
     }
@@ -67,19 +69,30 @@ const liveValidation = (ev) => {
     if (ev) {
         if (!checkEmpty(firstNameInput) || !checkEmpty(phoneInput)) {
             disable(saveBtn);
-        } else if (checkWrongPhoneInput(phoneInput) && checkWrongMailInput(emailInput)) {
+        } else if (checkWrongPhoneInput(phoneInput)
+                && checkWrongMailInput(emailInput)
+                && checkWrongFirstnameInput(firstNameInput)
+                && checkWrongLastnameInput(lastNameInput)) {
             enable(saveBtn);
         } else {
             disable(saveBtn);
         }
 
 
-        if (ev.target.id === phoneInput.id) {
+        if (ev.target === phoneInput) {
             checkWrongPhoneInput(phoneInput);
         }
 
-        if (ev.target.id === emailInput.id) {
+        if (ev.target === emailInput) {
             checkWrongMailInput(emailInput);
+        }
+
+        if (ev.target === firstNameInput) {
+            checkWrongFirstnameInput(firstNameInput);
+        }
+
+        if (ev.target === lastNameInput) {
+            checkWrongLastnameInput(lastNameInput);
         }
     }
 };
